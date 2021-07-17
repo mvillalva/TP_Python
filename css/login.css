@@ -1,0 +1,213 @@
+.body__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+.navi a {
+    color: var(--blanco);
+    text-decoration: none;
+}
+
+/*-----------------login-----------------*/
+.login {
+    height: 85vh;
+    background-image: url("http://picsum.photos/1024/768");
+    background-color: #cccccc;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 500px;
+}
+
+.login__container {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(48, 48, 48, 0.7);
+    border-radius: 10px;
+    width: 75vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.login__header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.login__line {
+    width: 10%;
+    background-color: var(--naranja);
+    border: 1px solid var(--naranja);
+    border-radius: 5px;
+    margin: 0 10px;
+}
+
+.login__title {
+    font-family: var(--font-title);
+    font-weight: var(--font-title-weight);
+    font-size: 3rem;
+    color: var(--blanco);
+}
+
+.login__form {
+    margin-bottom: 3vh;
+    padding: 20px 0;
+    border-radius: 10px;
+    background: linear-gradient(rgba(250, 184, 62, 0.8), rgba(255, 123, 0, 0.8));
+    align-self: center;
+    width: 90%;
+}
+
+.login__row {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    margin: 5px 10px 0 10px;
+}
+
+.login__col {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+}
+
+.login--inline {
+    display: inline-block;
+    position: relative;
+    margin: auto;
+}
+
+.login--center {
+    align-items: center;
+}
+
+.login__text {
+    margin: 8px 0;
+    padding: 8px 8px 8px 45px;
+    border: 1px solid var(--grisClaro);
+    border-radius: 5px;
+    outline: none;
+    background-color: var(--blanco);
+    color: var(--grisIntenso);
+    font-size: 1.6rem;
+    height: 30px;
+    width: 100%;
+}
+
+.login__icon {
+    position: absolute;
+    text-align: center;
+    color: var(--grisClaro);
+    top: 8px;
+    width: 30px;
+    height: 30px;
+    left: 0;
+    font-size: 1.2rem;
+    transition: 0.3s;
+}
+
+.login__icon--Bg {
+    background-color: var(--naranja85);
+    color: #fff;
+    padding: 12px 4px;
+    border-radius: 5px 0 0 5px;
+}
+
+.login__button {
+    font-size: 1.6rem;
+    text-align: center;
+    width: 150px;
+    margin: 10px 10px;
+    padding: 10px;
+    background-color: var(--negro50);
+    border: 3px solod var(--grisIntermedio);
+    border-radius: 20px;
+    text-decoration: none;
+    transition: all 500ms ease-in-out;
+    cursor: pointer;
+}
+
+.login__button--md {
+    width: 90px;
+    font-size: 1.6rem;
+}
+
+.login__button:focus,
+.login__button:hover {
+    border: 3px solod var(--naranja);
+    background-color: var(--negro70);
+}
+
+.login__text:focus,
+.login__text:hover,
+.login__text:focus + .login__icon--Bg,
+.login__text:hover + .login__icon--Bg {
+    border-color: var(--naranja);
+    box-shadow: 0 0 8px 0 var(--naranja);
+}
+
+/*---------------------- Modal ---------------------*/
+.modal-content {
+    border-radius: 10px;
+}
+
+.modal-title {
+    font-family: var(--font-title);
+    font-weight: var(--font-title-weight);
+    font-size: 2.4rem;
+    color: var(--grisIntenso);
+}
+
+.modal-body p {
+    font-size: 1.6rem;
+    color: var(--grisIntenso);
+}
+
+.modal-footer .login__button {
+    background-color: var(--naranja85);
+    transition: background-color 500ms ease-in-out;
+}
+
+.modal-footer .login__button:hover {
+    background-color: var(--naranja);
+}
+
+/*--------------------- footer ---------------------*/
+.footer {
+    height: 15vh;
+    min-height: 9.5rem;
+}
+
+/*--------------------- pantallas ---------------------*/
+@media only screen and (min-width: 480px) {
+    .login__line {
+        width: 18%;
+    }
+
+    .login__container {
+        width: 50vw;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .login__line {
+        width: 30%;
+    }
+
+    .login__text {
+        border-radius: 5px;
+        outline: none;
+        background-color: var(--blanco);
+    }
+
+    .login__container {
+        width: 350px;
+    }
+}

@@ -1,0 +1,83 @@
+{% extends 'base_main.html' %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('css', filename='normalize.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('css', filename='bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('css', filename='style.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('css', filename='login.css') }}" />
+{% endblock css %}
+
+{% block titble %}Acceso - Restó{% endblock titble %}
+
+{% block body %}class="body__container"{% endblock body %}
+
+
+{% block content %}
+    <main>
+        <section class="login"> <!-- Flex -->
+            <div class="login__container"> <!-- Flex -->
+                <div class="login__header"> <!-- Grid -->
+                    <hr class="login__line" />
+                    <h1 class="login__title">Acceso</h1>
+                    <hr class="login__line" />
+                </div>
+                <div class="login__form">
+                    <div class="login__row"> <!-- Flex -->
+                        <div class="login__col login--inline"> <!-- Flex -->
+                            <input
+                                class="login__text"
+                                type="text"
+                                name="usuario"
+                                id="usuario"
+                                placeholder="Usuario"
+                            />
+                            <i class="fa fa-user login__icon login__icon--Bg"></i>
+                        </div>
+                    </div>
+                    <div class="login__row"> <!-- Flex -->
+                        <div class="login__col login--inline login--icon-Bg"> <!-- Flex -->
+                            <input
+                                class="login__text"
+                                type="password"
+                                name="contrasenia"
+                                id="contrasenia"
+                                placeholder="Contraseña"
+                            />
+                            <i class="fa fa-key login__icon login__icon--Bg"></i>
+                        </div>
+                    </div>
+                    <div class="login__row"> <!-- Flex -->
+                        <div class="login__col login--center"> <!-- Flex -->
+                            <button class="login__button" data-bs-toggle="modal" data-bs-target="#modalMessage">
+                                Ingresar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal Bootstrap 5.0 -->
+    <div class="modal fade" id="modalMessage" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel">Acceso ( Bootstrap 5 )</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Usuario y/o contraseña inválidos</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="login__button login__button--md" data-bs-dismiss="modal">Cerrar</button>                
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block scripts %}
+    <script src="{{ url_for('js', filename='bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('js', filename='main.js') }}"></script>
+{% endblock scripts %}

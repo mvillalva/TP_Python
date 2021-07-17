@@ -1,0 +1,3 @@
+flask
+Flask-MySQL
+jinja2

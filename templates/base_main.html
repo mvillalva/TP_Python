@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap" rel="stylesheet"/>    
+    <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@300;400;600;900&display=swap" rel="stylesheet"/>
+    <link rel="shortcut icon" type="image/png" href="img/Resto.png" />    
+    {% block css %}{% endblock css %}
+    <script src="https://kit.fontawesome.com/e547f827f8.js" crossorigin="anonymous"></script>
+    <title>{% block title %}{% endblock title %}</title>
+</head>
+<body {% block body %}{% endblock body %}>
+    <header>
+        <nav class="navi" id="navi"> <!-- Flex -->
+            <h1 class="navi__logo navi__logo--25" id="logo"><a href="{{url_for('index')}}">Restó</a></h1>
+            <div class="navi__button" id="navi__button"><a href="#menu" class="navi__button-link"><i class="fas fa-bars"></i></a></div>
+            <ul class="menu" id="menu"> <!-- Flex -->
+                <li class="menu__item menu__item--select"><a href="{{url_for('index')}}" class="menu__link {{scroll}}" id="mnu_inicio">Inicio</a></li>
+                <li class="menu__item"><a href="{{index}}#destacados" class="menu__link {{scroll}}" id="mnu_destacados">Destacados</a></li>
+                <li class="menu__item"><a href="{{index}}#clientes" class="menu__link {{scroll}}" id="mnu_clientes">Clientes</a></li>
+                <li class="menu__item"><a href="{{index}}#nosotros" class="menu__link {{scroll}}" id="mnu_nosotros">Nosotros</a></li>
+                <li class="menu__item"><a href="{{index}}#contacto" class="menu__link {{scroll}}" id="mnu_contacto">Contacto</a></li>
+                {% block ingresar %}{% endblock ingresar %}                
+            </ul>
+        </nav>
+    </header>
+
+    {% block content %}{% endblock content %}        
+
+    <footer>
+        <div class="footer"> <!-- Flex -->
+            <div class="footer__container"> <!-- Flex -->
+                <a href="" onclick="return false" class="footer__icon footer--blue"><i class="footer__icon--text fab fa-facebook"></i></a>
+                <a href="" onclick="return false" class="footer__icon footer--lightblue"><i class="footer__icon--text fab fa-twitter"></i> </a>
+                <a href="" onclick="return false" class="footer__icon footer--gradient"><i class="footer__icon--text fab fa-instagram"></i></a>                
+            </div>
+            <p class="footer__copy-right">MaxLeonV &copy; 2021</p>
+        </div>
+    </footer>
+            
+    {% block scripts %}{% endblock scripts %}
+</body>
+</html>

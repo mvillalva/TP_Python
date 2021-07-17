@@ -1,0 +1,368 @@
+{% extends 'base_main.html' %}
+
+{% block titble %}Restó - CodoACodo 2021{% endblock titble %}
+
+{% block ingresar %}    
+    <li class="menu__item menu__item--fav"><a href="{{url_for('ingresar')}}" class="menu__link menu_link--fav">Ingresar</a></li>
+{% endblock ingresar %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('css', filename='normalize.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('css', filename='style.css') }}" />
+{% endblock css %}
+
+{% block content %}
+    <main>
+        <section class="banner" id="banner"> <!-- Flex -->
+            <div class="banner__container">
+                <h2 class="banner__title">El lugar de tus salidas favoritas</h2>
+                <p class="banner__subtitle">Encontra ese bar, pub o restaurante que estabas esperando</p>
+            </div>
+        </section>
+
+        <section class="cards" id="destacados">
+            <div class="cards__container"> <!-- Flex -->
+                <div class="cards__header"> <!-- Grid -->
+                    <hr class="cards__line" />
+                    <h1 class="cards__title">Destacados</h1>
+                    <hr class="cards__line" />
+                </div>
+                
+                <div class="card__container"> <!-- Flex -->
+                    <article class="card"> <!-- Flex -->
+                        <a class="card__image-link" href="#popup-lupita">
+                            <div class="card__image card__image--size"><i class="card__image--icon"></i><img class="card__image--fit" src="/img/Lupita.jpg" alt=""></div>
+                        </a>
+                        <h2 class="card__title">Lupita</h2>
+                        <p class="card__paragraph">
+                            Con más de una década viviendo y cocinando en México, Lupita ofrece en la Argentina una original propuesta de gastronomía latinoamericana.
+                        </p>
+                    </article>
+
+                    <article class="card"> <!-- Flex -->
+                        <a class="card__image-link" href="#popup-sullivan">
+                            <div class="card__image card__image--size"><i class="card__image--icon"></i><img class="card__image--fit" src="/img/sullivan-s.jpg" alt=""></div>
+                        </a>
+                        <h2 class="card__title">Sullivan's</h2>
+                        <p class="card__paragraph">
+                            Cervezas de todo el mundo y una completa carta de tragos y vinos. 
+                            La mejor música en un gran ambiente Irish Pub.
+                        </p>
+                    </article>
+
+                    <article class="card"> <!-- Flex -->
+                        <a class="card__image-link" href="#popup-chanchitos">
+                            <div class="card__image card__image--size"><i class="card__image--icon"></i><img class="card__image--fit" src="/img/Los_Chanchitos.jpg" alt=""></div>
+                        </a>
+                        <h2 class="card__title">Los Chanchitos</h2>
+                        <p class="card__paragraph">
+                            Restaurante - Parrilla
+                            Extraordinaria parrillada, exquisitos asados, pastas y muchas otras cosas que te van a saber increíblemente bien!
+                        </p>
+                    </article>
+
+                    <article class="card"> <!-- Flex -->
+                        <a class="card__image-link" href="#popup-otro">
+                            <div class="card__image card__image--4"><i class="card__image--icon"></i></div>
+                        </a>
+                        <h2 class="card__title">Ipsum Dolor</h2>
+                        <p class="card__paragraph">
+                            Sit amet consectetur adipisicing elit. Culpa dolores modi ipsa veritatis quidem itaque? Vitae, quisquam enim.
+                        </p>
+                    </article>
+
+                    <article class="card"> <!-- Flex -->
+                        <a class="card__image-link" href="#popup-otro">
+                            <div class="card__image card__image--5"><i class="card__image--icon"></i></div>
+                        </a>
+                        <h2 class="card__title">Skate Ipsum</h2>
+                        <p class="card__paragraph">
+                            Bones Brigade opposite footed hang up 180. Dude Dogtown nosepicker smith grind cab flip lien air carve.
+                        </p>
+                    </article>
+
+                    <article class="card"> <!-- Flex -->
+                        <a class="card__image-link" href="#popup-otro">
+                            <div class="card__image card__image--6"><i class="card__image--icon"></i></div>
+                        </a>
+                        <h2 class="card__title">Betty Coper</h2>
+                        <p class="card__paragraph">
+                            Shinner kingpin rocket air Kevin Jarvis hospital flip. Full pipe yeah nosepicker rails.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery" id="clientes">
+            <div class="gallery__container"> <!-- Flex -->
+                <div class="gallery__header"> <!-- Grid -->
+                    <hr class="gallery__line" />
+                    <h1 class="gallery__title">Nuestros Clientes</h1>
+                    <hr class="gallery__line" />
+                </div>
+                <div class="gallery__container-items"> <!-- Grid -->
+                    <div class="gallery__item"> <!-- Grid -->
+                        <div class="gallery__item-img gallery__item-img--1"></div>
+                        <h2 class="gallery__item-title">Cliente 1</h2>
+                        <p class="gallery__item-paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, doloremque!</p>
+                        
+                    </div>
+                    <div class="gallery__item"> <!-- Grid -->
+                        <div class="gallery__item-img gallery__item-img--2"></div>
+                        <h2 class="gallery__item-title">Cliente 2</h2>
+                        <p class="gallery__item-paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, doloremque!</p>
+                        
+                    </div>
+                    <div class="gallery__item"> <!-- Grid -->
+                        <div class="gallery__item-img gallery__item-img--3"></div>
+                        <h2 class="gallery__item-title">Cliente 3</h2>
+                        <p class="gallery__item-paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, doloremque!</p>
+                        
+                    </div>
+                    <div class="gallery__item"> <!-- Grid -->
+                        <div class="gallery__item-img"><img class="gallery__image--fit" src="/img/Lupita.jpg"></div>
+                        <h2 class="gallery__item-title">Cliente 4</h2>
+                        <p class="gallery__item-paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, doloremque!</p>
+                        
+                    </div>
+                    <div class="gallery__item"> <!-- Grid -->
+                        <div class="gallery__item-img gallery__item-img--5"></div>
+                        <h2 class="gallery__item-title">Cliente 5</h2>
+                        <p class="gallery__item-paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, doloremque!</p>
+                        
+                    </div>
+                    <div class="gallery__item"> <!-- Grid -->
+                        <div class="gallery__item-img gallery__item-img--6"></div>
+                        <h2 class="gallery__item-title">Cliente 6</h2>
+                        <p class="gallery__item-paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, doloremque!</p>
+                        
+                    </div>
+                    <div class="gallery__item"> <!-- Grid -->
+                        <div class="gallery__item-img gallery__item-img--7"></div>
+                        <h2 class="gallery__item-title">Cliente 7</h2>
+                        <p class="gallery__item-paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, doloremque!</p>
+                        
+                    </div>
+                    <div class="gallery__item"> <!-- Grid -->
+                        <div class="gallery__item-img gallery__item-img--8"></div>
+                        <h2 class="gallery__item-title">Cliente 8</h2>
+                        <p class="gallery__item-paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, doloremque!</p>
+                        
+                    </div>
+                    <div class="gallery__item"> <!-- Grid -->
+                        <div class="gallery__item-img gallery__item-img--9"></div>
+                        <h2 class="gallery__item-title">Cliente 9</h2>
+                        <p class="gallery__item-paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, doloremque!</p>
+                        
+                    </div>
+                    <div class="gallery__item"> <!-- Grid -->
+                        <div class="gallery__item-img gallery__item-img--10"></div>
+                        <h2 class="gallery__item-title">Cliente 10</h2>
+                        <p class="gallery__item-paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, doloremque!</p>
+                        
+                    </div>
+                    <div class="gallery__item"> <!-- Grid -->
+                        <div class="gallery__item-img gallery__item-img--11"></div>
+                        <h2 class="gallery__item-title">Cliente 11</h2>
+                        <p class="gallery__item-paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, doloremque!</p>
+                        
+                    </div>
+                    <div class="gallery__item"> <!-- Grid -->
+                        <div class="gallery__item-img gallery__item-img--12"></div>
+                        <h2 class="gallery__item-title">Cliente 12</h2>
+                        <p class="gallery__item-paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, doloremque!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="aboutus" id="nosotros">
+            <div class="aboutus__container"> <!-- Flex -->
+                <div class="aboutus__header"> <!-- Grid -->
+                    <hr class="aboutus__line" />
+                    <h1 class="aboutus__title">Sobre Nosotros</h1>
+                    <hr class="aboutus__line" />
+                </div>
+                <div class="aboutus__image"></div>
+                <div class="aboutus__story"> <!-- Flex -->
+                    <div class="aboutus__section"> <!-- Flex -->
+                        <h2 class="aboutus__subtitle">Un poco de historia</h2>
+                        <p class="aboutus__text">
+                            Skate ipsum dolor sit amet, freestyle Greg Evans rails quarter pipe
+                            mute-air judo air slide. Melancholy sick skater lipslide varial
+                            quarter pipe. Tic-tac pogo nollie kickflip blunt Natas Kaupas
+                            layback. Pool nose-bump bail hang up fakie out coper Steve Steadham.
+                            Finger flip Tracker wall ride kickturn coping slam. Bean plant
+                            melancholy no comply pressure flip 540 nosegrind nose blunt. Indy
+                            grab nosepicker hand rail freestyle pump acid drop. Christ air Primo
+                            slide feeble Bones Brigade opposite footed hang up 180. Dude Dogtown
+                            nosepicker smith grind cab flip lien air carve. Coffin deck quarter
+                            pipe Jason Lee frontside air disaster 1080. 1080 steps face plant
+                            540 bluntslide hand rail Jeff Phillips.
+                        </p>
+                    </div>
+                    <div class="aboutus__section">
+                        <h2 class="aboutus__subtitle">Objetivos</h2>
+                        <p class="aboutus__text">
+                            Betty coper skate or die 1080. Hospital flip Jimmy'Z lip shinner
+                            crooked grind. Speed wobbles method air darkslide Lester Kasai berm.
+                            Slam hang-up hanger lien air. Heel flip face plant fastplant slob
+                            air. Shinner kingpin rocket air Kevin Jarvis hospital flip. Full
+                            pipe yeah nosepicker rails. Bluntslide skate key shoveit nose slide.
+                            Spanky frigid air transition boneless shoveit. Dude aerial hip
+                            roll-in.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contacto" id="contacto">
+            <div class="contacto__container">
+                <div class="contacto__header"> <!-- Grid -->
+                    <hr class="contacto__line" />
+                    <h1 class="contacto__title">Contacto</h1>
+                    <hr class="contacto__line" />
+                </div>
+                
+                <div class="contacto__row-container"> <!-- Flex -->
+                    <div class="contacto__col contacto__col--mb3"> <!-- Flex -->
+                        <p class="contacto__title contacto--fontsize-md">¿Dónde Estamos?</p>
+                        <iframe class="contacto__iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13135.386947566083!2d-58.43166988027343!3d-34.6080368622259!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xd055df0a7dafa86e!2sParque%20Centenario!5e0!3m2!1ses!2sar!4v1619723711679!5m2!1ses!2sar" allowfullscreen="" loading="lazy"></iframe>
+                        <p class="contacto__title contacto--fontsize-md">Datos útiles</p>
+                        <span class="contacto__paragraph"><a class="contacto__link" href="tel:+545555-5555"><i class="fa fa-phone-alt"></i> 5555-5555</a></span>
+                        <span class="contacto__paragraph"><i class="fa fa-map-marker-alt"></i> Av. Diaz Velez</span>
+                        <span class="contacto__paragraph"><a class="contacto__link" href="mailto:info@resto.com"><i class="fa fa-at"></i> info@resto.com</a></span>
+                    </div>
+                    <div class="contacto__col"> <!-- Flex -->
+                        <p class="contacto__title contacto--fontsize-md">Escribinos</p>
+                        <form class="contacto__form" action="mensaje.php" method="post">                            
+                            <div class="contacto__row"> <!-- Flex -->
+                                <div class="contacto__col col__w100p"> <!-- Flex -->
+                                    <label class="contacto__label contacto__label--req" for="nombre">Nombre</label>
+                                    <input
+                                        class="contacto__text"
+                                        type="text"
+                                        name="nombre"
+                                        id="nombre"
+                                        required/>
+                                </div>
+                                <div class="contacto__col col__w100p"> <!-- Flex -->
+                                    <label class="contacto__label contacto__label--req" for="apellido">Apellido</label>
+                                    <input
+                                        class="contacto__text"
+                                        type="text"
+                                        name="apellido"
+                                        id="apellido"
+                                        required/>
+                                </div>
+                            </div>
+                            <div class="contacto__row"> <!-- Flex -->
+                                <div class="contacto__col col__w100p"> <!-- Flex -->
+                                    <label class="contacto__label contacto__label--req" for="email">email</label>
+                                    <input
+                                        class="contacto__text"
+                                        type="email"
+                                        name="email"
+                                        id="email"
+                                        required/>
+                                </div>
+                                <div class="contacto__col col__w100p"> <!-- Flex -->
+                                    <label class="contacto__label" for="telefono">Teléfono</label>
+                                    <input
+                                        class="contacto__text"
+                                        type="tel"
+                                        name="telefono"
+                                        id="telefono"/>
+                                </div>
+                            </div>
+                            <div class="contacto__row"> <!-- Flex -->
+                                <div class="contacto__col col__w100p"> <!-- Flex -->
+                                    <label class="contacto__label contacto__label--req" for="asunto">Asunto</label>
+                                    <select
+                                        class="contacto__select"
+                                        name="asunto"
+                                        id="asunto">
+                                        <option class="contacto__text" value="1">Consulta</option>
+                                        <option class="contacto__text" value="2">Resgitro</option>
+                                        <option class="contacto__text" value="3">Otro</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="contacto__row"> <!-- Flex -->
+                                <div class="contacto__col col__w100p"> <!-- Flex -->
+                                    <label class="contacto__label contacto__label--req" for="mensaje">Mensaje</label>
+                                    <textarea
+                                        class="contacto__area"
+                                        name="mensaje"
+                                        id="mensaje"
+                                        cols="30"
+                                        rows="5"
+                                        required
+                                    ></textarea>
+                                </div>
+                            </div>
+                            <div class="contacto__row"> <!-- Flex -->
+                                <div class="contacto__col contacto--center"> <!-- Flex -->
+                                    <button class="contacto__button" type="submit">
+                                        Enviar
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>                
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="popup-lupita" class="popup"> <!-- Flex -->
+        <a class="popup--cerrar" href="#."></a>
+        <div class="popup__container"> <!-- Grid -->       
+            <iframe class="popup__iframe" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13139.344321943763!2d-58.435282!3d-34.583014!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xec164805a99425ea!2sLupita%20Mexican%20Bar!5e0!3m2!1ses!2sar!4v1618868771029!5m2!1ses!2sar" allowfullscreen="" loading="lazy"></iframe>
+            <p class="popup__text"><i class="popup__icon fas fa-map-marker-alt"></i> Fitz Roy 1834, Palermo, CABA</p>
+            <p class="popup__text"><i class="popup__icon fas fa-phone-alt"></i><a class="popup__link" href="tel:+541147718240"> (11) 4771-8240</a></p>
+            <p class="popup__text"><i class="popup__icon fas fa-globe-americas"></i><a class="popup__link" href="http://www.lupitamexicanbar.com/" target="_blank"> www.lupitamexicanbar.com</a></p>
+        </div>
+    </div>
+      
+    <div id="popup-sullivan" class="popup"> <!-- Flex -->
+        <a class="popup--cerrar" href="#."></a>
+        <div class="popup__container"> <!-- Grid -->
+            <iframe class="popup__iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.646006133674!2d-58.43144008501121!3d-34.58782266416366!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb5889a4e59b9%3A0x91b7d119de9fbed8!2sSullivan&#39;s%20Irish%20Pub!5e0!3m2!1ses!2sar!4v1618878185165!5m2!1ses!2sar" allowfullscreen="" loading="lazy"></iframe>
+            <p class="popup__text"><i class="popup__icon fas fa-map-marker-alt"></i> Jorge Luis Borges 1702, Palermo, CABA</p>
+            <p class="popup__text"><i class="popup__icon fas fa-phone-alt"></i><a class="popup__link" href="tel:+541148326442"> (11) 4832-6442</a></p>
+            <p class="popup__text"><i class="popup__icon fas fa-globe-americas"></i><a class="popup__link" href="https://www.instagram.com/sullivanspub_ba" target="_blank"> SullivansPub_BA</a></p>
+        </div>
+    </div>
+      
+    <div id="popup-chanchitos" class="popup"> <!-- Flex -->
+        <a class="popup--cerrar" href="#."></a>
+        <div class="popup__container"> <!-- Grid -->
+            <iframe class="popup__iframe" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13135.785135179354!2d-58.439608!3d-34.6055198!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xcb93607e54980e38!2sLos%20Chanchitos%20Parrilla!5e0!3m2!1ses!2sar!4v1619194715066!5m2!1ses!2sar" allowfullscreen="" loading="lazy"></iframe>
+            <p class="popup__text"><i class="popup__icon fas fa-map-marker-alt"></i> Av. Angel Gallardo 601, Almagro, CABA</p>
+            <p class="popup__text"><i class="popup__icon fas fa-phone-alt"></i><a class="popup__link" href="tel:+541148544030"> (11) 4854-4030</a></p>
+            <p class="popup__text"><i class="popup__icon fas fa-globe-americas"></i><a class="popup__link" href="https://www.facebook.com/LosChanchitosCooperativaLimitada/?ref=page_internal" target="_blank"> LosChanchitosCooperativaLimitada</a></p>
+        </div>
+    </div>
+
+    <div id="popup-otro" class="popup"> <!-- Flex -->
+        <a class="popup--cerrar" href="#."></a>        
+        <div class="popup__container"> <!-- Grid -->
+            <iframe class="popup__iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3075.727030981407!2d2.6522945149056207!3d39.565762114875646!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1297924c112e7391%3A0x9a0bb738f08058d1!2sCarrer%20de%20la%20Calatrava%2C%2025A%2C%2007001%20Palma%2C%20Illes%20Balears%2C%20Espa%C3%B1a!5e0!3m2!1ses!2sar!4v1619906937372!5m2!1ses!2sar" allowfullscreen="" loading="lazy"></iframe>
+            <p class="popup__text"><i class="popup__icon fas fa-map-marker-alt"></i> Carrer de la Calatrava, 25A, Palma de Mallorca, España</p>
+            <p class="popup__text"><i class="popup__icon fas fa-phone-alt"></i><a class="popup__link" href="tel:+34971240240"> 971 24 02 40</a></p>
+            <p class="popup__text"><i class="popup__icon fas fa-globe-americas"></i><a class="popup__link" href="https://es.wikipedia.org/wiki/Palma_de_Mallorca" target="_blank"> Palma de Mallorca</a></p>
+        </div>        
+    </div>
+
+    <div class="button-up" id="button-up">
+        <a href="/" class="scroll"><i class="fas fa-chevron-up"></i></a>
+    </div>
+
+{% endblock content %}
+
+{% block scripts %}
+    <script src="{{ url_for('js', filename='main.js') }}"></script>
+{% endblock scripts %}

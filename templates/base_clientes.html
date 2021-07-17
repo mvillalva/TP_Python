@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap" rel="stylesheet"/>    
+    <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@300;400;600;900&display=swap" rel="stylesheet"/>
+    <link rel="shortcut icon" type="image/png" href="{{ url_for('img', filename='Resto.png') }}"/>
+    <link rel="stylesheet" href="{{ url_for('css', filename='bootstrap.min.css') }}"/>
+    {% block css %}{% endblock css %}
+    <script src="https://kit.fontawesome.com/e547f827f8.js" crossorigin="anonymous"></script>
+    <title>{% block title %}{% endblock title %}</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <a class="navbar-brand">Gestión de Clientes</a>
+            <button class="navbar-toggler" data-target="#menu" data-toggle="collapse" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="menu" class="collapse navbar-collapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Clientes <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="{{url_for('clientes')}}" tabindex="-1" aria-disabled="true">Salir</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+        
+    {% block content %}{% endblock content %}    
+
+    <footer>
+        <div class="footer"> <!-- Flex -->
+            <div class="footer__container"> <!-- Flex -->
+                <a href="#." class="footer__icon footer--blue"><i class="footer__icon--text fab fa-facebook"></i></a>
+                <a href="#." class="footer__icon footer--lightblue"><i class="footer__icon--text fab fa-twitter"></i> </a>
+                <a href="#." class="footer__icon footer--gradient"><i class="footer__icon--text fab fa-instagram"></i></a>                
+            </div>
+            <p class="footer__copy-right">MaxLeonV &copy; 2021</p>
+        </div>
+    </footer>
+        
+    <script src="{{ url_for('js', filename='bootstrap.bundle.min.js') }}"></script>
+    {% block scripts %}{% endblock scripts %}
+</body>
+</html>
