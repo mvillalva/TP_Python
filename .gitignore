@@ -3,3 +3,4 @@ TP-Python.code-workspace
 .gitignore
 __pycache__/db.cpython-38.pyc
 __pycache__/cliente.cpython-38.pyc
+db.py
