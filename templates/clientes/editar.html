@@ -1,0 +1,48 @@
+{% extends 'base_clientes.html' %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('css', filename='normalize.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('css', filename='bootstrap.min.css') }}" />    
+    <link rel="stylesheet" href="{{ url_for('css', filename='clientes.css') }}" />
+{% endblock css %}
+
+{% block titble %}Restó - Editar Cliente{% endblock titble %}
+
+{% block content %}
+
+<div class="card__container mt-4">
+    <form class="card justify-content-center align-items-center" action="/store" method="POST" enctype="multipart/form-data">
+        {% for cliente in clientes %} 
+        <script>console.log('{{cliente[4]}}')</script>
+        <div class="card-img-container">
+            <input type="file" name="img" id="img" hidden >
+            <img id="foto" name="foto" type="image" src="{{url_for('uploads', filename=cliente[3])}}" class="card-img-top card-img-cover img-thumbnail" onclick="openFile();"/>
+            <label class="card-label-container">
+                <input type="checkbox" name="destacado" id="destacado" class="card-destacado" {% if cliente[4] == 1 %}checked{% endif %}>
+                <span class="card-destacado-icon fas fa-star"></span>
+            </label>
+        </div>
+        <ul class="list-group list-group-flush">
+            <input id="idCliente" name="idCliente" type="text" value="{{cliente[0]}}" hidden>
+            <input id="nombre" name="nombre" type="text" class="list-group-item card-item-title" placeholder="Nombre del Restó" value="{{cliente[1]}}" required>
+            <textarea cols="30" rows="3" type="text" name="descripcion" id="descripcion" placeholder="Descripción" class="list-group-item  card-item-style" required>{{cliente[2]}}</textarea>
+            <span class="list-group-item-icon fas fa-map-marker-alt"></span><input id="direccion" name="direccion" type="text" class="list-group-item" placeholder="Dirección"  value="{{cliente[5]}}" required>
+            <span class="list-group-item-icon fas fa-phone"></span><input id="telefono" name="telefono" type="tel" class="list-group-item" placeholder="Teléfono"  value="{{cliente[6]}}" required>
+            <span class="list-group-item-icon fas fa-at"></span><input id="email" name="email" type="email" class="list-group-item" placeholder="Email"  value="{{cliente[7]}}" required>
+            <span class="list-group-item-icon fas fa-globe-americas"></span><input id="url" name="url" type="url" class="list-group-item" placeholder="Web"  value="{{cliente[8]}}">
+            <span class="list-group-item-icon fas fa-map-marked-alt"></span><input id="mapa" name="mapa" type="url" class="list-group-item" placeholder="Ubicación"  value="{{cliente[9]}}">
+            {% endfor %}
+        </ul>
+        <div class="card-body">
+            <button type="submit" class="btn btn-success" value="Guardar">Guardar</button>
+            <a href="{{ url_for('clientes') }}" class="btn btn-danger" onclick="return confirm('¿Desea cancelar?');">cancelar</a>
+        </div>
+    </form>
+</div>
+    
+{% endblock content %}
+
+{% block scripts %}
+    <script src="{{ url_for('js', filename='bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('js', filename='clientes.js') }}"></script>
+{% endblock scripts %}

@@ -258,24 +258,6 @@ body {
   object-fit: cover;
 }
 
-.card__image--4 {
-  min-height: 100px;
-  max-height: 180px;
-  background-image: url("http://picsum.photos/300/200");
-}
-
-.card__image--5 {
-  min-height: 100px;
-  max-height: 180px;
-  background-image: url("http://picsum.photos/310/210");
-}
-
-.card__image--6 {
-  min-height: 100px;
-  max-height: 180px;
-  background-image: url("http://picsum.photos/304/204");
-}
-
 .card__image--icon {
   position: absolute;
   top: 50%;
@@ -634,7 +616,7 @@ body {
 
 .gallery__container-items {
   display: grid;
-  grid-template: repeat(4, 300px) / repeat(auto-fit, minmax(200px, 1fr));
+  grid-template: repeat(1, 300px) / repeat(auto-fit, minmax(200px, 1fr));
   grid-gap: 5px;
   align-items: center;
   justify-content: center;
@@ -649,7 +631,7 @@ body {
 .gallery__item {
   height: 100%;
   display: grid;
-  grid-template: 1fr 40px 40px / 1fr;
+  grid-template: 1fr 40px 1fr / 1fr;
   align-items: center;
   overflow: hidden;
   background-color: var(--blanco);
@@ -662,68 +644,8 @@ body {
 .gallery__item-img {
   width: 100%;
   height: 100%;
+  max-height: 160px;
   box-shadow: 0 3px 5px var(--negro70);
-}
-
-.gallery__item-img--1 {
-  background: url("http://picsum.photos/300/200");
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.gallery__item-img--2 {
-  background: url("http://picsum.photos/301/201");
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.gallery__item-img--3 {
-  background: url("http://picsum.photos/302/202");
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.gallery__item-img--4 {
-  
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.gallery__item-img--5 {
-  background: url("http://picsum.photos/304/204");
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.gallery__item-img--6 {
-  background: url("../img/sullivan-s.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.gallery__item-img--7 {
-  background: url("http://picsum.photos/306/206");
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.gallery__item-img--8 {
-  background: url("../img/Los_Chanchitos.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.gallery__item-img--9 {
-  background: url("http://picsum.photos/308/208");
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.gallery__item-img--10 {
-  background: url("http://picsum.photos/309/209");
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.gallery__item-img--11 {
-  background: url("http://picsum.photos/310/210");
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.gallery__item-img--12 {
-  background: url("http://picsum.photos/311/211");
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 .gallery__item-title {
@@ -736,8 +658,10 @@ body {
 
 .gallery__item-paragraph {
   margin: 0.5rem;
+  height: 100%;
   font-size: 1.6rem;
   color: var(--naranja);
+  overflow: auto;
 }
 
 .gallery__image--fit {
@@ -1096,8 +1020,8 @@ body {
   }
 
   .gallery__container-items {
-    grid-template: repeat(4, minmax(100px, 200px)) / repeat(auto-fill, minmax(300px, 1fr));
-    grid-auto-rows: 200px;
+    grid-template: repeat(1, minmax(100px, 250px)) / repeat(auto-fill, minmax(300px, 1fr));
+    grid-auto-rows: 250px;
   }
 
   .gallery__item {
@@ -1110,12 +1034,16 @@ body {
   }
 
   .gallery__item:hover {
-    grid-template: 115px 40px 40px / 1fr;
+    grid-template: 115px 40px 1fr / 1fr;
   }
 
   .gallery__item:hover .gallery__item-title,
   .gallery__item:hover .gallery__item-paragraph {
     display: initial;
+  }
+
+  .gallery__item-img {
+    max-height: none;
   }
 
   .gallery__image--fit:hover {

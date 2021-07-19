@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{ url_for('css', filename='clientes.css') }}" />
 {% endblock css %}
 
-{% block titble %}Restó - Cartera de clientes{% endblock titble %}
+{% block titble %}Restó - Clientes Destacados{% endblock titble %}
 
 {% block content %}    
     {% if clientes|length > 0 %}
@@ -14,7 +14,7 @@
             <div class="gallery__container"> <!-- Flex -->
                 <div class="gallery__header"> <!-- Grid -->
                     <hr class="gallery__line" />
-                    <h1 class="gallery__title">Cartera de Clientes</h1>
+                    <h1 class="gallery__title">Clientes <span class="fas fa-star"></span> Destacados</h1>
                     <hr class="gallery__line" />
                 </div>
                 <div class="gallery__container-items"> <!-- Grid -->
@@ -22,10 +22,6 @@
                     <div class="gallery__item"> <!-- Grid -->                            
                         <div class="gallery__item-img">
                             <img class="gallery__image--fit" src="{{ url_for('uploads', filename=cliente[3]) }}">                            
-                            <div class="gallery__item-buttons">
-                                <a href="/eliminar/{{cliente[0]}}" class="btn btn-danger" title="Eliminar"><span class="fas fa-user-times"></span></a>
-                                <a href="/editar/{{cliente[0]}}" class="btn btn-warning text-light" title="Editar"><span class="fas fa-user-edit"></span></a>
-                            </div>
                             {% if cliente[4] == 1 %}
                             <span class="gallery__item--icon"></span>
                             {% endif %}

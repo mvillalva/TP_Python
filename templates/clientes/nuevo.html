@@ -11,12 +11,17 @@
 {% block content %}
 
 <div class="card__container mt-4">
-    <form class="card justify-content-center align-items-center" action="/add" method="POST" enctype="multipart/form-data">
+    <form class="card justify-content-center align-items-center" action="/store" method="POST" enctype="multipart/form-data">        
         <div class="card-img-container">
             <input type="file" name="img" id="img" hidden required>
             <img id="foto" name="foto" type="image" src="{{url_for('img', filename='Resto.png')}}" class="card-img-top img-thumbnail" onclick="openFile();"/>
+            <label class="card-label-container">
+                <input type="checkbox" name="destacado" id="destacado" class="card-destacado">
+                <span class="card-destacado-icon fas fa-star"></span>
+            </label>
         </div>
         <ul class="list-group list-group-flush">
+            <input id="idCliente" name="idCliente" type="text" value="0" hidden>            
             <input id="nombre" name="nombre" type="text" class="list-group-item card-item-title" placeholder="Nombre del Restó" required>
             <textarea cols="30" rows="3" type="text" name="descripcion" id="descripcion" placeholder="Descripción" class="list-group-item  card-item-style" required></textarea>
             <span class="list-group-item-icon fas fa-map-marker-alt"></span><input id="direccion" name="direccion" type="text" class="list-group-item" placeholder="Dirección" required>

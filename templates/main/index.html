@@ -29,67 +29,19 @@
                 </div>
                 
                 <div class="card__container"> <!-- Flex -->
-                    <article class="card"> <!-- Flex -->
-                        <a class="card__image-link" href="#popup-lupita">
-                            <div class="card__image card__image--size"><i class="card__image--icon"></i><img class="card__image--fit" src="/img/Lupita.jpg" alt=""></div>
-                        </a>
-                        <h2 class="card__title">Lupita</h2>
-                        <p class="card__paragraph">
-                            Con más de una década viviendo y cocinando en México, Lupita ofrece en la Argentina una original propuesta de gastronomía latinoamericana.
-                        </p>
-                    </article>
-
-                    <article class="card"> <!-- Flex -->
-                        <a class="card__image-link" href="#popup-sullivan">
-                            <div class="card__image card__image--size"><i class="card__image--icon"></i><img class="card__image--fit" src="/img/sullivan-s.jpg" alt=""></div>
-                        </a>
-                        <h2 class="card__title">Sullivan's</h2>
-                        <p class="card__paragraph">
-                            Cervezas de todo el mundo y una completa carta de tragos y vinos. 
-                            La mejor música en un gran ambiente Irish Pub.
-                        </p>
-                    </article>
-
-                    <article class="card"> <!-- Flex -->
-                        <a class="card__image-link" href="#popup-chanchitos">
-                            <div class="card__image card__image--size"><i class="card__image--icon"></i><img class="card__image--fit" src="/img/Los_Chanchitos.jpg" alt=""></div>
-                        </a>
-                        <h2 class="card__title">Los Chanchitos</h2>
-                        <p class="card__paragraph">
-                            Restaurante - Parrilla
-                            Extraordinaria parrillada, exquisitos asados, pastas y muchas otras cosas que te van a saber increíblemente bien!
-                        </p>
-                    </article>
-
-                    <article class="card"> <!-- Flex -->
-                        <a class="card__image-link" href="#popup-otro">
-                            <div class="card__image card__image--4"><i class="card__image--icon"></i></div>
-                        </a>
-                        <h2 class="card__title">Ipsum Dolor</h2>
-                        <p class="card__paragraph">
-                            Sit amet consectetur adipisicing elit. Culpa dolores modi ipsa veritatis quidem itaque? Vitae, quisquam enim.
-                        </p>
-                    </article>
-
-                    <article class="card"> <!-- Flex -->
-                        <a class="card__image-link" href="#popup-otro">
-                            <div class="card__image card__image--5"><i class="card__image--icon"></i></div>
-                        </a>
-                        <h2 class="card__title">Skate Ipsum</h2>
-                        <p class="card__paragraph">
-                            Bones Brigade opposite footed hang up 180. Dude Dogtown nosepicker smith grind cab flip lien air carve.
-                        </p>
-                    </article>
-
-                    <article class="card"> <!-- Flex -->
-                        <a class="card__image-link" href="#popup-otro">
-                            <div class="card__image card__image--6"><i class="card__image--icon"></i></div>
-                        </a>
-                        <h2 class="card__title">Betty Coper</h2>
-                        <p class="card__paragraph">
-                            Shinner kingpin rocket air Kevin Jarvis hospital flip. Full pipe yeah nosepicker rails.
-                        </p>
-                    </article>
+                    {% for cliente in clientes %}
+                        {% if cliente[4] == 1 %}
+                        <article class="card"> <!-- Flex -->
+                            <a class="card__image-link" href="#popup-{{cliente[0]}}">
+                                <div class="card__image card__image--size"><i class="card__image--icon"></i><img class="card__image--fit" src="{{ url_for('uploads', filename=cliente[3]) }}" alt=""></div>
+                            </a>
+                            <h2 class="card__title">{{cliente[1]}}</h2>
+                            <p class="card__paragraph">
+                                {{cliente[2]}}
+                            </p>
+                        </article>
+                        {% endif %}
+                    {% endfor %}
                 </div>
             </div>
         </section>
@@ -102,77 +54,13 @@
                     <hr class="gallery__line" />
                 </div>
                 <div class="gallery__container-items"> <!-- Grid -->
+                    {% for cliente in clientes %}
                     <div class="gallery__item"> <!-- Grid -->
-                        <div class="gallery__item-img gallery__item-img--1"></div>
-                        <h2 class="gallery__item-title">Cliente 1</h2>
-                        <p class="gallery__item-paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, doloremque!</p>
-                        
+                        <div class="gallery__item-img"><img class="gallery__image--fit" src="{{ url_for('uploads', filename=cliente[3]) }}"></div>
+                        <h2 class="gallery__item-title">{{cliente[1]}}</h2>
+                        <p class="gallery__item-paragraph">{{cliente[2]}}</p>
                     </div>
-                    <div class="gallery__item"> <!-- Grid -->
-                        <div class="gallery__item-img gallery__item-img--2"></div>
-                        <h2 class="gallery__item-title">Cliente 2</h2>
-                        <p class="gallery__item-paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, doloremque!</p>
-                        
-                    </div>
-                    <div class="gallery__item"> <!-- Grid -->
-                        <div class="gallery__item-img gallery__item-img--3"></div>
-                        <h2 class="gallery__item-title">Cliente 3</h2>
-                        <p class="gallery__item-paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, doloremque!</p>
-                        
-                    </div>
-                    <div class="gallery__item"> <!-- Grid -->
-                        <div class="gallery__item-img"><img class="gallery__image--fit" src="/img/Lupita.jpg"></div>
-                        <h2 class="gallery__item-title">Cliente 4</h2>
-                        <p class="gallery__item-paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, doloremque!</p>
-                        
-                    </div>
-                    <div class="gallery__item"> <!-- Grid -->
-                        <div class="gallery__item-img gallery__item-img--5"></div>
-                        <h2 class="gallery__item-title">Cliente 5</h2>
-                        <p class="gallery__item-paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, doloremque!</p>
-                        
-                    </div>
-                    <div class="gallery__item"> <!-- Grid -->
-                        <div class="gallery__item-img gallery__item-img--6"></div>
-                        <h2 class="gallery__item-title">Cliente 6</h2>
-                        <p class="gallery__item-paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, doloremque!</p>
-                        
-                    </div>
-                    <div class="gallery__item"> <!-- Grid -->
-                        <div class="gallery__item-img gallery__item-img--7"></div>
-                        <h2 class="gallery__item-title">Cliente 7</h2>
-                        <p class="gallery__item-paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, doloremque!</p>
-                        
-                    </div>
-                    <div class="gallery__item"> <!-- Grid -->
-                        <div class="gallery__item-img gallery__item-img--8"></div>
-                        <h2 class="gallery__item-title">Cliente 8</h2>
-                        <p class="gallery__item-paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, doloremque!</p>
-                        
-                    </div>
-                    <div class="gallery__item"> <!-- Grid -->
-                        <div class="gallery__item-img gallery__item-img--9"></div>
-                        <h2 class="gallery__item-title">Cliente 9</h2>
-                        <p class="gallery__item-paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, doloremque!</p>
-                        
-                    </div>
-                    <div class="gallery__item"> <!-- Grid -->
-                        <div class="gallery__item-img gallery__item-img--10"></div>
-                        <h2 class="gallery__item-title">Cliente 10</h2>
-                        <p class="gallery__item-paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, doloremque!</p>
-                        
-                    </div>
-                    <div class="gallery__item"> <!-- Grid -->
-                        <div class="gallery__item-img gallery__item-img--11"></div>
-                        <h2 class="gallery__item-title">Cliente 11</h2>
-                        <p class="gallery__item-paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, doloremque!</p>
-                        
-                    </div>
-                    <div class="gallery__item"> <!-- Grid -->
-                        <div class="gallery__item-img gallery__item-img--12"></div>
-                        <h2 class="gallery__item-title">Cliente 12</h2>
-                        <p class="gallery__item-paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, doloremque!</p>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </section>
@@ -317,45 +205,20 @@
         </section>
     </main>
 
-    <div id="popup-lupita" class="popup"> <!-- Flex -->
-        <a class="popup--cerrar" href="#."></a>
-        <div class="popup__container"> <!-- Grid -->       
-            <iframe class="popup__iframe" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13139.344321943763!2d-58.435282!3d-34.583014!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xec164805a99425ea!2sLupita%20Mexican%20Bar!5e0!3m2!1ses!2sar!4v1618868771029!5m2!1ses!2sar" allowfullscreen="" loading="lazy"></iframe>
-            <p class="popup__text"><i class="popup__icon fas fa-map-marker-alt"></i> Fitz Roy 1834, Palermo, CABA</p>
-            <p class="popup__text"><i class="popup__icon fas fa-phone-alt"></i><a class="popup__link" href="tel:+541147718240"> (11) 4771-8240</a></p>
-            <p class="popup__text"><i class="popup__icon fas fa-globe-americas"></i><a class="popup__link" href="http://www.lupitamexicanbar.com/" target="_blank"> www.lupitamexicanbar.com</a></p>
+    {% for cliente in clientes %}
+        {% if cliente[4] == 1 %}
+        <script>console.log('{{cliente[9]}}');</script>
+        <div id="popup-{{cliente[0]}}" class="popup"> <!-- Flex -->
+            <a class="popup--cerrar" href="#."></a>
+            <div class="popup__container"> <!-- Grid -->       
+                <iframe class="popup__iframe" src="{{cliente[9]}}" allowfullscreen="" loading="lazy"></iframe>
+                <p class="popup__text"><i class="popup__icon fas fa-map-marker-alt"></i> {{cliente[5]}}</p>
+                <p class="popup__text"><i class="popup__icon fas fa-phone-alt"></i><a class="popup__link" href="tel:+54{{cliente[6]}}"> {{cliente[6]}}</a></p>
+                <p class="popup__text"><i class="popup__icon fas fa-globe-americas"></i><a class="popup__link" href="{{cliente[8]}}" target="_blank"> {{cliente[8]}}</a></p>
+            </div>
         </div>
-    </div>
-      
-    <div id="popup-sullivan" class="popup"> <!-- Flex -->
-        <a class="popup--cerrar" href="#."></a>
-        <div class="popup__container"> <!-- Grid -->
-            <iframe class="popup__iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.646006133674!2d-58.43144008501121!3d-34.58782266416366!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb5889a4e59b9%3A0x91b7d119de9fbed8!2sSullivan&#39;s%20Irish%20Pub!5e0!3m2!1ses!2sar!4v1618878185165!5m2!1ses!2sar" allowfullscreen="" loading="lazy"></iframe>
-            <p class="popup__text"><i class="popup__icon fas fa-map-marker-alt"></i> Jorge Luis Borges 1702, Palermo, CABA</p>
-            <p class="popup__text"><i class="popup__icon fas fa-phone-alt"></i><a class="popup__link" href="tel:+541148326442"> (11) 4832-6442</a></p>
-            <p class="popup__text"><i class="popup__icon fas fa-globe-americas"></i><a class="popup__link" href="https://www.instagram.com/sullivanspub_ba" target="_blank"> SullivansPub_BA</a></p>
-        </div>
-    </div>
-      
-    <div id="popup-chanchitos" class="popup"> <!-- Flex -->
-        <a class="popup--cerrar" href="#."></a>
-        <div class="popup__container"> <!-- Grid -->
-            <iframe class="popup__iframe" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13135.785135179354!2d-58.439608!3d-34.6055198!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xcb93607e54980e38!2sLos%20Chanchitos%20Parrilla!5e0!3m2!1ses!2sar!4v1619194715066!5m2!1ses!2sar" allowfullscreen="" loading="lazy"></iframe>
-            <p class="popup__text"><i class="popup__icon fas fa-map-marker-alt"></i> Av. Angel Gallardo 601, Almagro, CABA</p>
-            <p class="popup__text"><i class="popup__icon fas fa-phone-alt"></i><a class="popup__link" href="tel:+541148544030"> (11) 4854-4030</a></p>
-            <p class="popup__text"><i class="popup__icon fas fa-globe-americas"></i><a class="popup__link" href="https://www.facebook.com/LosChanchitosCooperativaLimitada/?ref=page_internal" target="_blank"> LosChanchitosCooperativaLimitada</a></p>
-        </div>
-    </div>
-
-    <div id="popup-otro" class="popup"> <!-- Flex -->
-        <a class="popup--cerrar" href="#."></a>        
-        <div class="popup__container"> <!-- Grid -->
-            <iframe class="popup__iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3075.727030981407!2d2.6522945149056207!3d39.565762114875646!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1297924c112e7391%3A0x9a0bb738f08058d1!2sCarrer%20de%20la%20Calatrava%2C%2025A%2C%2007001%20Palma%2C%20Illes%20Balears%2C%20Espa%C3%B1a!5e0!3m2!1ses!2sar!4v1619906937372!5m2!1ses!2sar" allowfullscreen="" loading="lazy"></iframe>
-            <p class="popup__text"><i class="popup__icon fas fa-map-marker-alt"></i> Carrer de la Calatrava, 25A, Palma de Mallorca, España</p>
-            <p class="popup__text"><i class="popup__icon fas fa-phone-alt"></i><a class="popup__link" href="tel:+34971240240"> 971 24 02 40</a></p>
-            <p class="popup__text"><i class="popup__icon fas fa-globe-americas"></i><a class="popup__link" href="https://es.wikipedia.org/wiki/Palma_de_Mallorca" target="_blank"> Palma de Mallorca</a></p>
-        </div>        
-    </div>
+        {% endif %}
+    {% endfor %}
 
     <div class="button-up" id="button-up">
         <a href="/" class="scroll"><i class="fas fa-chevron-up"></i></a>

@@ -1,5 +1,6 @@
 :root {
-  --amarillo: rgba(255, 238, 0, 0.6);
+  --amarillo: rgb(255, 217, 0);
+  --amarillo60: rgba(255, 238, 0, 0.6);
   --naranja: rgb(255, 123, 0);
   --naranjaClaro: rgb(250, 184, 62);
   --naranja20: rgba(224, 153, 0, 0.3);
@@ -38,14 +39,8 @@ body {
 }
 
 input,
-input:hover,
-input:focus,
-input:active,
 input::placeholder,
 textarea,
-textarea:hover,
-textarea:focus,
-textarea:active,
 textarea::placeholder {
   font-weight: 300;
   border-style: none !important;
@@ -55,6 +50,16 @@ textarea::placeholder {
   outline: none;
   margin-bottom: 5px;
   color: var(--blanco) !important;
+}
+
+input:focus,
+input:active,
+input:hover,
+textarea:focus,
+textarea:active,
+textarea:hover {
+  border-style: solid !important;
+  border: 1px solid var(--naranja);
 }
 
 .navi__logo {
@@ -99,6 +104,7 @@ textarea::placeholder {
 }
 
 .card-img-container {
+  position: relative;
   width: 90%;
   margin-top: 20px;
   border-radius: 10px;
@@ -126,6 +132,48 @@ textarea::placeholder {
   font-family: var(--font-title);
   font-weight: var(--font-title-weight);
 }
+
+.card-label-container {
+  display: block;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.card-destacado {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.card-destacado-icon {
+  position: absolute;
+  top: 5px;
+  right: 5px;  
+  font-size: 1.5rem;
+  color: var(--grisIntermedio);  
+}
+
+.card-destacado:hover ~ .card-destacado-icon {
+  color: var(--grisClaro);
+}
+
+.card-destacado:checked ~ .card-destacado-icon {
+  color: var(--amarillo);
+}
+
+/* .card-destacado:after {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f005";
+  color: black; 
+} */
 
 .list-group {
   width: 90%;
@@ -249,7 +297,7 @@ textarea::placeholder {
   top: 0;
   left: 35%;
   font-size: 5rem;
-  color: var(--amarillo);
+  color: var(--amarillo60);
 }
 
 .gallery__item--icon::before {

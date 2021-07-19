@@ -2,22 +2,21 @@ from flask import Flask
 from flask import render_template, request, redirect, flash, url_for
 from flask import send_from_directory
 from datetime import datetime
-
 from flask.cli import routes_command
-
 from cliente import *
 import os
+
 
 app = Flask(__name__)
 app.secret_key = "Codoacodo"
 
 cliente = Cliente(app)
-CARPETA = os.path.join('uploads')
+uploads = os.path.join('uploads')
 JS = os.path.join('js')
 CSS = os.path.join('css')
 IMG = os.path.join('img')
 
-app.config['CARPETA'] = CARPETA
+app.config['UPLOADS'] = uploads
 app.config['CSS'] = CSS
 app.config['JS'] = JS
 app.config['IMG'] = IMG
@@ -26,7 +25,7 @@ app.config['iduser'] = -1
 
 @app.route('/uploads/<filename>')
 def uploads(filename):
-    return send_from_directory(app.config['CARPETA'], filename)
+    return send_from_directory(app.config['UPLOADS'], filename)
 
 
 @app.route('/css/<filename>')
@@ -68,7 +67,7 @@ def login():
     elif (_pass == usuario[0][1]):
         app.config['iduser'] = usuario[0][0]
         menues = cliente.querySelect("call s_menu(%s)", (usuario[0][0]))
-        clientes = cliente.querySelect("call s_clientes(%s)", (usuario[0][0]))
+        clientes = cliente.querySelect("call s_clientes(%s, 0, 0)", (usuario[0][0]))
     else:
         valido = False
 
@@ -82,7 +81,8 @@ def login():
 @app.route('/clientes')
 def clientes():
     menues = cliente.querySelect("call s_menu(%s)", (app.config['iduser']))
-    clientes = cliente.querySelect("call s_clientes(%s)", (app.config['iduser']))
+    clientes = cliente.querySelect("call s_clientes(%s, 0, 0)", (app.config['iduser']))
+
     return render_template('clientes/clientes.html', menues=menues, clientes=clientes)
 
 
@@ -96,8 +96,9 @@ def nuevo():
 @app.route('/editar/<int:id>')
 def editar(id):
     menues = cliente.querySelect("call s_menu(%s)", (app.config['iduser']))
+    clientes = cliente.querySelect("call s_clientes(%s, %s, 0)", (app.config['iduser'], id))
 
-    return render_template('clientes/editar.html', menues=menues)
+    return render_template('clientes/editar.html', menues=menues, clientes=clientes)
 
 
 @app.route('/altaspormes')
@@ -107,7 +108,10 @@ def altaspormes():
 
 @app.route('/destacados')
 def destacados():
-    pass
+    menues = cliente.querySelect("call s_menu(%s)", (app.config['iduser']))
+    clientes = cliente.querySelect("call s_clientes(%s, 0, 1)", (app.config['iduser']))
+
+    return render_template('clientes/destacados.html', menues=menues, clientes=clientes)
 
 
 @app.route('/movimientos')
@@ -115,20 +119,26 @@ def movimientos():
     pass
 
 
-@app.route('/destroy/<int:id>')
-def destroy(id):
-    fila = cliente.select("SELECT foto from cliente WHERE id = %s", (id))
-    os.remove(os.path.join(app.config['CARPETA'], fila[0][0]))
+@app.route('/eliminar/<int:id>')
+def eliminar(id):
+    fila = cliente.querySelect("SELECT imagen FROM cliente WHERE id = %s", (id))
+    if os.path.isfile(os.path.join(app.config['UPLOADS'])):
+        os.remove(os.path.join(app.config['UPLOADS'], fila[0][0]))
 
-    cliente.queryExec("DELETE FROM cliente WHERE id=%s", (id))
+    sql = "call iud_cliente(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    datos = (id, '', '', '', 0, '', '', '', '', '', 1)
+
+    cliente.queryExec(sql, datos)
 
     return redirect('/clientes')
 
 
-@app.route('/add', methods=['POST'])
+@app.route('/store', methods=['POST'])
 def storage():
+    _id     = int(request.form['idCliente'])
     _nombre = request.form['nombre']
     _descripcion = request.form['descripcion']
+    _destacado = request.form['destacado']
     _direccion = request.form['direccion']
     _telefono = request.form['telefono']
     _correo = request.form['email']    
@@ -139,41 +149,22 @@ def storage():
     now = datetime.now()
     tiempo = now.strftime("%Y%H%M%S")
     nuevoNombreFoto = ''
+    favorito = 0
 
     if _foto.filename != '':
         nuevoNombreFoto = tiempo + _foto.filename
         _foto.save("uploads/" + nuevoNombreFoto)
+        if _id > 0:
+            fila = cliente.querySelect("SELECT imagen FROM cliente WHERE id = %s", (_id))
+            if len(fila) > 0:
+                os.remove(os.path.join(app.config['UPLOADS'], fila[0][0]))
+    
+    if _destacado == 'on':
+        favorito = 1
 
-    sql = "call iud_cliente(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    sql = "call iud_cliente(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
 
-    datos = (0, _nombre, _descripcion, nuevoNombreFoto, _direccion, _telefono, _correo, _url, _mapa, 0)
-
-    cliente.queryExec(sql, datos)
-
-    return redirect("/clientes")
-
-
-@app.route('/update', methods=['POST'])
-def update():
-    _id = request.form['txtID']
-    _nombre = request.form['txtNombre']
-    _correo = request.form['txtCorreo']
-    _foto = request.files['txtFoto']
-
-    now = datetime.now()
-    tiempo = now.strftime("%Y%H%M%S")
-
-    nuevoNombreFoto = ''
-
-    if _foto.filename != '':
-        nuevoNombreFoto = tiempo + _foto.filename
-        _foto.save("uploads/" + nuevoNombreFoto)
-        fila = cliente.select(
-            "SELECT foto from empleados WHERE id = %s", (_id))
-        os.remove(os.path.join(app.config['CARPETA'], fila[0][0]))
-
-    sql = "UPDATE `sistema`.`empleados` SET nombre=%s, correo=%s, foto=%s WHERE id=%s;"
-    datos = (_nombre, _correo, nuevoNombreFoto, _id)
+    datos = (_id, _nombre, _descripcion, nuevoNombreFoto, favorito, _direccion, _telefono, _correo, _url, _mapa, 0)
 
     cliente.queryExec(sql, datos)
 
