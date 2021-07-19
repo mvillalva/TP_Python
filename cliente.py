@@ -5,7 +5,7 @@ class Cliente(DB):
 
     def __init__(self, app) -> None:
         super().__init__(app)
-        self.setDBName("")
+        self.setDBName("resto")
         self.init_app()
 
     def querySelect(self, sql, data=""):

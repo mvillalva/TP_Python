@@ -21,14 +21,14 @@
                     <h1 class="login__title">Acceso</h1>
                     <hr class="login__line" />
                 </div>
-                <div class="login__form">
+                <form class="login__form" method="POST" action="/login" >
                     <div class="login__row"> <!-- Flex -->
                         <div class="login__col login--inline"> <!-- Flex -->
                             <input
                                 class="login__text"
                                 type="text"
-                                name="usuario"
-                                id="usuario"
+                                name="user"
+                                id="user"
                                 placeholder="Usuario"
                             />
                             <i class="fa fa-user login__icon login__icon--Bg"></i>
@@ -39,8 +39,8 @@
                             <input
                                 class="login__text"
                                 type="password"
-                                name="contrasenia"
-                                id="contrasenia"
+                                name="password"
+                                id="password"
                                 placeholder="Contraseña"
                             />
                             <i class="fa fa-key login__icon login__icon--Bg"></i>
@@ -48,26 +48,25 @@
                     </div>
                     <div class="login__row"> <!-- Flex -->
                         <div class="login__col login--center"> <!-- Flex -->
-                            <button class="login__button" data-bs-toggle="modal" data-bs-target="#modalMessage">
+                            <button type="submit" class="login__button" onclick="return validarIngreso()">
                                 Ingresar
                             </button>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </section>
     </main>
 
-    <!-- Modal Bootstrap 5.0 -->
-    <div class="modal fade" id="modalMessage" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalIngreso" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalLabel">Acceso ( Bootstrap 5 )</h5>
+                    <h5 class="modal-title" id="modalLabel">Acceso</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Usuario y/o contraseña inválidos</p>
+                    <p id="modalIngresoMensaje"></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="login__button login__button--md" data-bs-dismiss="modal">Cerrar</button>                
@@ -75,6 +74,33 @@
             </div>
         </div>
     </div>
+
+    {% with messages= get_flashed_messages() %}
+
+        {% if messages %}        
+            <div class="modal fade" id="modalMessage" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalLabel">Acceso</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            {% for message in messages %}
+                                <p>{{message}}</p>
+                            {% endfor %}                    
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="login__button login__button--md" data-bs-dismiss="modal">Cerrar</button>                
+                        </div>
+                    </div>
+                </div>
+            </div>        
+        {% endif %}
+
+    {% endwith %}
+
+    
 {% endblock content %}
 
 {% block scripts %}

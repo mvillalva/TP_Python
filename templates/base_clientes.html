@@ -7,26 +7,61 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap" rel="stylesheet"/>    
     <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@300;400;600;900&display=swap" rel="stylesheet"/>
-    <link rel="shortcut icon" type="image/png" href="{{ url_for('img', filename='Resto.png') }}"/>
-    <link rel="stylesheet" href="{{ url_for('css', filename='bootstrap.min.css') }}"/>
+    <link rel="shortcut icon" type="image/png" href="{{ url_for('img', filename='Resto.png') }}"/>    
     {% block css %}{% endblock css %}
     <script src="https://kit.fontawesome.com/e547f827f8.js" crossorigin="anonymous"></script>
     <title>{% block title %}{% endblock title %}</title>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-            <a class="navbar-brand">Gestión de Clientes</a>
-            <button class="navbar-toggler" data-target="#menu" data-toggle="collapse" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand navi__logo">Restó</a>
+            <button class="navbar-toggler" data-bs-target="#menu" data-bs-toggle="collapse" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div id="menu" class="collapse navbar-collapse">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Clientes <span class="sr-only">(current)</span></a>
-                    </li>
+                    {% if menues %}
+                        {% set firstitem = true %}
+                        {% set child = namespace(value=false) %}
+
+                        {% for menu in menues %}            
+                            {% if menu[2] == None %}
+                                {% set id = menu[0] %}
+
+                                {% if child.value %}
+                                        </ul>
+                                    </li>
+                                {% endif %}    
+                            
+                                {% set child.value = true %}
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown{{id}}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <span class="{{menu[3]}} text-gray"></span> {{menu[1]}}
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown{{id}}">
+
+                            {% else %}
+                                {% if child.value %}
+                                    <li><a class="dropdown-item" href="{{ url_for(menu[2]) }}"><span class="{{menu[3]}} text-gray"></span> {{menu[1]}}</a></li>
+                                {% else %}
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#"><span class="{{menu[3]}} text-gray"></span> {{menu[1]}}</a>
+                                    </li>
+                                {% endif %}
+                            {% endif %}            
+                        {% endfor %}
+
+                        {% if child.value %}
+                                </ul>
+                            </li>            
+                        {% endif %}
+
+                        {% set child.value = false %}
+                    {% endif %}
                     <li class="nav-item">
-                        <a class="nav-link disabled" href="{{url_for('clientes')}}" tabindex="-1" aria-disabled="true">Salir</a>
+                        <a class="nav-link" href="{{url_for('ingresar')}}" tabindex="-1" aria-disabled="true">Salir</a>
                     </li>
                 </ul>
             </div>
@@ -36,17 +71,11 @@
     {% block content %}{% endblock content %}    
 
     <footer>
-        <div class="footer"> <!-- Flex -->
-            <div class="footer__container"> <!-- Flex -->
-                <a href="#." class="footer__icon footer--blue"><i class="footer__icon--text fab fa-facebook"></i></a>
-                <a href="#." class="footer__icon footer--lightblue"><i class="footer__icon--text fab fa-twitter"></i> </a>
-                <a href="#." class="footer__icon footer--gradient"><i class="footer__icon--text fab fa-instagram"></i></a>                
-            </div>
+        <div class="footer"> <!-- Flex -->            
             <p class="footer__copy-right">MaxLeonV &copy; 2021</p>
         </div>
     </footer>
-        
-    <script src="{{ url_for('js', filename='bootstrap.bundle.min.js') }}"></script>
+            
     {% block scripts %}{% endblock scripts %}
 </body>
 </html>

@@ -116,3 +116,39 @@ window.addEventListener("scroll", function () {
         }
     }
 });
+
+let modalIngreso = new bootstrap.Modal(document.getElementById('modalIngreso'), {
+    keyboard: false
+});
+
+let modalMessage = new bootstrap.Modal(document.getElementById('modalMessage'), {
+    keyboard: false
+  });
+
+if (modalMessage) {
+    modalMessage.toggle();    
+}
+
+function validarIngreso(){
+    let user = document.getElementById("user").value;
+    let password = document.getElementById("password").value;
+    let mensaje = '';    
+
+    if (!user) {
+        mensaje = 'Ingrese su nombre de usuario.'
+    }
+    else if (!password) {
+        mensaje = 'Ingrese su contraseña.'
+    }
+    
+    if (mensaje) {    
+        let p = document.getElementById("modalIngresoMensaje");
+        p.textContent = mensaje;
+        
+        modalIngreso.toggle();
+
+        return  false
+    }
+    
+    return true
+}
