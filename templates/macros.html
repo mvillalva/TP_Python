@@ -1,0 +1,21 @@
+{% macro mensaje(title, message, icon, confirm) -%}
+    <div class="modal fade" id="modalMessage" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel"><span class="modal-icon {{ icon }}"></span> {{ title }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">                    
+                    <p>{{ message }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="modal-btn modal-btn--md btn-ok" id="btn_ok" data-bs-dismiss="modal">Aceptar</button>
+                    {% if confirm == 'S' %}
+                    <button type="button" class="modal-btn modal-btn--md btn-cancel" id="btn_cancel" data-bs-dismiss="modal">Cancelar</button>                
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>    
+{%- endmacro %}

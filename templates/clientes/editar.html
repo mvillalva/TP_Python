@@ -35,10 +35,13 @@
         </ul>
         <div class="card-body">
             <button type="submit" class="btn btn-success" value="Guardar">Guardar</button>
-            <a href="{{ url_for('clientes') }}" class="btn btn-danger" onclick="return confirm('¿Desea cancelar?');">cancelar</a>
+            <a class="btn btn-danger btn-accion" data-href="{{ url_for('clientes') }}">cancelar</a>
         </div>
     </form>
 </div>
+
+    {% from 'macros.html' import mensaje as msg %}
+    {{msg('Atención!', '¿Está seguro que quiere cancelar la edición?', '', 'S')}}
     
 {% endblock content %}
 

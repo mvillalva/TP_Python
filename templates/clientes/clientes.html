@@ -23,7 +23,7 @@
                         <div class="gallery__item-img">
                             <img class="gallery__image--fit" src="{{ url_for('uploads', filename=cliente[3]) }}">                            
                             <div class="gallery__item-buttons">
-                                <a href="/eliminar/{{cliente[0]}}" class="btn btn-danger" title="Eliminar"><span class="fas fa-user-times"></span></a>
+                                <a class="btn btn-danger btn-accion" title="Eliminar" data-href="/eliminar/{{cliente[0]}}"><span class="fas fa-user-times"></span></a>
                                 <a href="/editar/{{cliente[0]}}" class="btn btn-warning text-light" title="Editar"><span class="fas fa-user-edit"></span></a>
                             </div>
                             {% if cliente[4] == 1 %}
@@ -42,7 +42,10 @@
             <h4>No hay clientes en la cartera</h4>
             <a href="{{ url_for('nuevo') }}" class="m-5 btn btn-info no__clients--btn"><span class="fas fa-user-plus"></span> Nuevo</a>
         </div>
-    {% endif %}
+    {% endif %}    
+
+    {% from 'macros.html' import mensaje as msg %}
+    {{msg('Cartera de Clientes', '¿Está seguro de eliminar al cliente?', 'modal-icon-danger fas fa-user-times', 'S')}}
 {% endblock content %}
 
 {% block scripts %}

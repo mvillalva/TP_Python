@@ -17,3 +17,35 @@ const openFile = () => {
 
      image.click();
 };
+
+let modalMessage = new bootstrap.Modal(document.getElementById('modalMessage'), {
+    keyboard: false
+  });
+
+let _href;
+
+const modalConfirm = function(callback){
+  
+    document.querySelectorAll(".btn-accion").forEach((e) => {
+        e.addEventListener("click", (e) => {
+            _href = e.currentTarget.dataset.href;            
+            modalMessage.toggle();
+        });
+    });
+    
+    document.getElementById("btn_ok").addEventListener("click", () => {
+        callback(true)
+        modalMessage.toggle();
+    });
+    
+    document.getElementById("btn_cancel").addEventListener("click", () => {
+        callback(false)
+        modalMessage.toggle();
+    });
+  };
+  
+  modalConfirm(function(confirm){
+    if(confirm)
+        if (_href)
+            window.location.href = _href;
+  });

@@ -2,7 +2,6 @@ from flask import Flask
 from flask import render_template, request, redirect, flash, url_for
 from flask import send_from_directory
 from datetime import datetime
-from flask.cli import routes_command
 from cliente import *
 import os
 
@@ -137,34 +136,34 @@ def eliminar(id):
 def storage():
     _id     = int(request.form['idCliente'])
     _nombre = request.form['nombre']
-    _descripcion = request.form['descripcion']
-    _destacado = request.form['destacado']
+    _descripcion = request.form['descripcion']        
     _direccion = request.form['direccion']
     _telefono = request.form['telefono']
     _correo = request.form['email']    
     _foto = request.files['img']
     _url = request.form['url']
     _mapa = request.form['mapa']
+    _destacado = 0
+
+    if "destacado" in request.form:
+        _destacado = 1
 
     now = datetime.now()
     tiempo = now.strftime("%Y%H%M%S")
-    nuevoNombreFoto = ''
-    favorito = 0
+    nuevoNombreFoto = ''    
 
     if _foto.filename != '':
         nuevoNombreFoto = tiempo + _foto.filename
         _foto.save("uploads/" + nuevoNombreFoto)
         if _id > 0:
             fila = cliente.querySelect("SELECT imagen FROM cliente WHERE id = %s", (_id))
-            if len(fila) > 0:
+            if os.path.isfile(os.path.join(app.config['UPLOADS'])):
                 os.remove(os.path.join(app.config['UPLOADS'], fila[0][0]))
-    
-    if _destacado == 'on':
-        favorito = 1
+        
 
     sql = "call iud_cliente(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
 
-    datos = (_id, _nombre, _descripcion, nuevoNombreFoto, favorito, _direccion, _telefono, _correo, _url, _mapa, 0)
+    datos = (_id, _nombre, _descripcion, nuevoNombreFoto, _destacado, _direccion, _telefono, _correo, _url, _mapa, 0)
 
     cliente.queryExec(sql, datos)
 
