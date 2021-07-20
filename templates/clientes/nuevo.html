@@ -36,7 +36,7 @@
         </div>
     </form>
 </div>
-    {% from 'macros.html' import mensaje as msg %}
+    {% from 'macros.j2' import mensaje as msg %}
     {{msg('Atención!', '¿Está seguro que quiere cancelar?', '', 'S')}}
 {% endblock content %}
 

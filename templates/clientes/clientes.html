@@ -44,7 +44,7 @@
         </div>
     {% endif %}    
 
-    {% from 'macros.html' import mensaje as msg %}
+    {% from 'macros.j2' import mensaje as msg %}
     {{msg('Cartera de Clientes', '¿Está seguro de eliminar al cliente?', 'modal-icon-danger fas fa-user-times', 'S')}}
 {% endblock content %}
 

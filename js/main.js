@@ -117,18 +117,6 @@ window.addEventListener("scroll", function () {
     }
 });
 
-let modalIngreso = new bootstrap.Modal(document.getElementById('modalIngreso'), {
-    keyboard: false
-});
-
-let modalMessage = new bootstrap.Modal(document.getElementById('modalMessage'), {
-    keyboard: false
-  });
-
-if (modalMessage) {
-    modalMessage.toggle();    
-}
-
 function validarIngreso(){
     let user = document.getElementById("user").value;
     let password = document.getElementById("password").value;
@@ -152,3 +140,20 @@ function validarIngreso(){
     
     return true
 }
+
+document.querySelectorAll("a[data-tipo='info']").forEach((info) => {  
+    info.addEventListener("click", (e) => {    
+        document.querySelector(e.currentTarget.dataset.href).classList.toggle("popup-visible");
+    });    
+});
+
+document.querySelectorAll("[data-tipo='ocultar-info']").forEach((info) => {
+    info.addEventListener("click", (e) => {    
+        e.currentTarget.parentElement.classList.toggle("popup-visible");
+    });
+
+    info.addEventListener("keydown", (e) => {
+        if (e.key == "Escape")
+            e.currentTarget.parentElement.classList.toggle("popup-visible");
+    });
+});

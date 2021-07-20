@@ -32,7 +32,7 @@
                     {% for cliente in clientes %}
                         {% if cliente[4] == 1 %}
                         <article class="card"> <!-- Flex -->
-                            <a class="card__image-link" href="#popup-{{cliente[0]}}">
+                            <a class="card__image-link" data-href="#popup-{{cliente[0]}}" data-tipo="info">
                                 <div class="card__image card__image--size"><i class="card__image--icon"></i><img class="card__image--fit" src="{{ url_for('uploads', filename=cliente[3]) }}" alt=""></div>
                             </a>
                             <h2 class="card__title">{{cliente[1]}}</h2>
@@ -56,7 +56,9 @@
                 <div class="gallery__container-items"> <!-- Grid -->
                     {% for cliente in clientes %}
                     <div class="gallery__item"> <!-- Grid -->
-                        <div class="gallery__item-img"><img class="gallery__image--fit" src="{{ url_for('uploads', filename=cliente[3]) }}"></div>
+                        <a class="gallery__image-link" data-href="#popup-{{cliente[0]}}" data-tipo="info">
+                            <div class="gallery__item-img"><i class="gallery__image--icon"></i><img class="gallery__image--fit" src="{{ url_for('uploads', filename=cliente[3]) }}"></div>
+                        </a>
                         <h2 class="gallery__item-title">{{cliente[1]}}</h2>
                         <p class="gallery__item-paragraph">{{cliente[2]}}</p>
                     </div>
@@ -205,19 +207,16 @@
         </section>
     </main>
 
-    {% for cliente in clientes %}
-        {% if cliente[4] == 1 %}
-        <script>console.log('{{cliente[9]}}');</script>
-        <div id="popup-{{cliente[0]}}" class="popup"> <!-- Flex -->
-            <a class="popup--cerrar" href="#."></a>
-            <div class="popup__container"> <!-- Grid -->       
-                <iframe class="popup__iframe" src="{{cliente[9]}}" allowfullscreen="" loading="lazy"></iframe>
-                <p class="popup__text"><i class="popup__icon fas fa-map-marker-alt"></i> {{cliente[5]}}</p>
-                <p class="popup__text"><i class="popup__icon fas fa-phone-alt"></i><a class="popup__link" href="tel:+54{{cliente[6]}}"> {{cliente[6]}}</a></p>
-                <p class="popup__text"><i class="popup__icon fas fa-globe-americas"></i><a class="popup__link" href="{{cliente[8]}}" target="_blank"> {{cliente[8]}}</a></p>
-            </div>
-        </div>
-        {% endif %}
+    {% for cliente in clientes %}            
+    <div id="popup-{{cliente[0]}}" class="popup"> <!-- Flex -->
+        <div class="popup__container"> <!-- Grid -->       
+            <iframe class="popup__iframe" src="{{cliente[9]}}" allowfullscreen="" loading="lazy"></iframe>
+            <p class="popup__text"><i class="popup__icon fas fa-map-marker-alt"></i> {{cliente[5]}}</p>
+            <p class="popup__text"><i class="popup__icon fas fa-phone-alt"></i><a class="popup__link" href="tel:+54{{cliente[6]}}"> {{cliente[6]}}</a></p>
+            <p class="popup__text"><i class="popup__icon fas fa-globe-americas"></i><a class="popup__link" href="{{cliente[8]}}" target="_blank"> {{cliente[8]}}</a></p>
+        </div>        
+        <a data-tipo="ocultar-info" class="popup--cerrar"></a>
+    </div>
     {% endfor %}
 
     <div class="button-up" id="button-up">
@@ -226,6 +225,6 @@
 
 {% endblock content %}
 
-{% block scripts %}
+{% block scripts %}    
     <script src="{{ url_for('js', filename='main.js') }}"></script>
 {% endblock scripts %}
