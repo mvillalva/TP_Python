@@ -151,9 +151,9 @@ document.querySelectorAll("[data-tipo='ocultar-info']").forEach((info) => {
     info.addEventListener("click", (e) => {    
         e.currentTarget.parentElement.classList.toggle("popup-visible");
     });
+});
 
-    info.addEventListener("keydown", (e) => {
-        if (e.key == "Escape")
-            e.currentTarget.parentElement.classList.toggle("popup-visible");
-    });
+document.addEventListener("keydown", (e) => {
+    if (e.key == "Escape")
+        document.querySelector(".popup-visible").classList.toggle("popup-visible");
 });

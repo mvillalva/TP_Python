@@ -24,20 +24,16 @@
                     {% if menues %}
                         {% set firstitem = true %}
                         {% set child = namespace(value=false) %}
-                        {% set permisos = namespace(value='') %}
+                        {% set mostrar = namespace(value=false) %}
 
-                        {% for menu in menues %}                            
-                            {% if menu[5] != None %}
-                                {% set permisos.value = permisos.value + 'C' %}
-                            {% endif %}
+                        {% for menu in menues %}
+                            {% set mostrar.value = flase %}
                             
-                            {% if menu[6] != None %}
-                                {% set permisos.value = permisos.value + 'U' %}
-                            {% endif %}
-                            
-                            {% if menu[7] != None %}
-                                {% set permisos.value = permisos.value + 'D' %}
-                            {% endif %}
+                            {% for data in menu[5] %}
+                                {% if data in menu[6] %}
+                                    {% set mostrar.value = true %}
+                                {% endif %}                                
+                            {% endfor %}                            
 
                             {% if menu[2] == None %}
                                 {% set id = menu[0] %}
@@ -50,18 +46,22 @@
                                 {% set child.value = true %}
 
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown{{id}}" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-permisos="{{permisos.value}}">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown{{id}}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <span class="{{menu[3]}} text-gray"></span> {{menu[1]}}
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown{{id}}">
 
-                            {% else %}
+                            {% else %}                            
                                 {% if child.value %}
-                                    <li><a class="dropdown-item" href="{{ url_for(menu[2]) }}" data-permisos="{{permisos.value}}"><span class="{{menu[3]}} text-gray"></span> {{menu[1]}}</a></li>
+                                    {% if mostrar.value %}
+                                    <li><a class="dropdown-item" href="{{ url_for(menu[2]) }}"><span class="{{menu[3]}} text-gray"></span> {{menu[1]}}</a></li>
+                                    {% endif %}
                                 {% else %}
+                                    {% if mostrar.value %}
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#" data-permisos="{{permisos.value}}"><span class="{{menu[3]}} text-gray"></span> {{menu[1]}}</a>
+                                        <a class="nav-link" href="#"><span class="{{menu[3]}} text-gray"></span> {{menu[1]}}</a>
                                     </li>
+                                    {% endif %}
                                 {% endif %}
                             {% endif %}            
                         {% endfor %}

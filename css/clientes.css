@@ -28,8 +28,7 @@
 * {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  text-decoration: none;
-  /* color: white; */
+  text-decoration: none;  
 }
 
 body {
@@ -270,6 +269,11 @@ textarea:hover {
   font-size: 1rem;
   color: var(--naranja);
   overflow: auto;
+  text-decoration: none;
+}
+
+a.gallery__item-paragraph:hover {
+  color: var(--naranja);
 }
 
 .gallery__image--fit {
@@ -283,6 +287,10 @@ textarea:hover {
   display: flex;
   top: -150px;
   justify-content: space-between;
+}
+
+.gallery__item-buttons a {
+  border-radius: 10px;
 }
 
 .gallery__item--icon {

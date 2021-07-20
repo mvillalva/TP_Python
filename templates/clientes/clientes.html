@@ -8,7 +8,24 @@
 
 {% block titble %}Restó - Cartera de clientes{% endblock titble %}
 
-{% block content %}    
+
+{% block content %}
+    {% set d_eliminar = namespace(value='') %}
+    {% set d_editar = namespace(value='') %}    
+    
+    {% for menu in menues %}
+        {% if menu[1] == 'Cartera' %}
+            {% if 'U' not in menu[5] %}
+                {% set d_editar.value = 'd-none' %}
+            {% endif %}
+
+            {% if 'D' not in menu[5] %}
+                {% set d_eliminar.value = 'd-none' %}
+            {% endif %}
+            
+        {% endif %}
+    {% endfor %}
+
     {% if clientes|length > 0 %}
         <section class="gallery" id="clientes">
             <div class="gallery__container"> <!-- Flex -->
@@ -23,15 +40,16 @@
                         <div class="gallery__item-img">
                             <img class="gallery__image--fit" src="{{ url_for('uploads', filename=cliente[3]) }}">                            
                             <div class="gallery__item-buttons">
-                                <a class="btn btn-danger btn-accion" title="Eliminar" data-href="/eliminar/{{cliente[0]}}"><span class="fas fa-user-times"></span></a>
-                                <a href="/editar/{{cliente[0]}}" class="btn btn-warning text-light" title="Editar"><span class="fas fa-user-edit"></span></a>
+                                <a class="btn btn-danger btn-accion {{d_eliminar.value}}" title="Eliminar" data-href="/eliminar/{{cliente[0]}}"><span class="fas fa-user-times"></span></a>
+                                <a href="/editar/{{cliente[0]}}" class="btn btn-warning text-light {{d_editar.value}}" title="Editar"><span class="fas fa-user-edit"></span></a>
                             </div>
                             {% if cliente[4] == 1 %}
                             <span class="gallery__item--icon"></span>
                             {% endif %}
                         </div>
                         <h2 class="gallery__item-title"><strong>{{cliente[1]}}</strong></h2>
-                        <p class="gallery__item-paragraph">{{cliente[2]}}</p>
+                        <p class="gallery__item-paragraph">{{cliente[2]}}</p>                        
+                        <a href="tel:{{cliente[6]}}" class="gallery__item-paragraph"><span class="fas fa-phone"></span> {{cliente[6]}}</a>
                     </div>
                 {% endfor %}
                 </div>
