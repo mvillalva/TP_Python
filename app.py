@@ -50,6 +50,7 @@ def index():
 
 @app.route("/ingresar")
 def ingresar():
+    app.config['iduser'] = -1
     return render_template("main/ingresar.html", index=url_for('index'))
 
 
@@ -79,6 +80,9 @@ def login():
 
 @app.route('/clientes')
 def clientes():
+    if app.config['iduser'] == -1:
+        return redirect('/ingresar')
+
     menues = cliente.querySelect("call s_menu(%s)", (app.config['iduser']))
     clientes = cliente.querySelect("call s_clientes(%s, 0, 0)", (app.config['iduser']))
 
@@ -87,6 +91,9 @@ def clientes():
 
 @app.route('/nuevo')
 def nuevo():
+    if app.config['iduser'] == -1:
+        return redirect('/ingresar')
+
     menues = cliente.querySelect("call s_menu(%s)", (app.config['iduser']))
 
     return render_template('clientes/nuevo.html', menues=menues)
@@ -94,6 +101,9 @@ def nuevo():
 
 @app.route('/editar/<int:id>')
 def editar(id):
+    if app.config['iduser'] == -1:
+        return redirect('/ingresar')
+
     menues = cliente.querySelect("call s_menu(%s)", (app.config['iduser']))
     clientes = cliente.querySelect("call s_clientes(%s, %s, 0)", (app.config['iduser'], id))
 
@@ -102,11 +112,20 @@ def editar(id):
 
 @app.route('/altaspormes')
 def altaspormes():
-    pass
+    if app.config['iduser'] == -1:
+        return redirect('/ingresar')
+    
+    menues = cliente.querySelect("call s_menu(%s)", (app.config['iduser']))
+    clientes = cliente.querySelect("call s_clientes(%s, 0, 1)", (app.config['iduser']))
+
+    return render_template('clientes/altaspormes.html', menues=menues, clientes=clientes)
 
 
 @app.route('/destacados')
 def destacados():
+    if app.config['iduser'] == -1:
+        return redirect('/ingresar')
+
     menues = cliente.querySelect("call s_menu(%s)", (app.config['iduser']))
     clientes = cliente.querySelect("call s_clientes(%s, 0, 1)", (app.config['iduser']))
 
@@ -115,11 +134,20 @@ def destacados():
 
 @app.route('/movimientos')
 def movimientos():
-    pass
+    if app.config['iduser'] == -1:
+        return redirect('/ingresar')
+    
+    menues = cliente.querySelect("call s_menu(%s)", (app.config['iduser']))
+    clientes = cliente.querySelect("call s_clientes(%s, 0, 1)", (app.config['iduser']))
+
+    return render_template('clientes/movimiento.html', menues=menues, clientes=clientes)
 
 
 @app.route('/eliminar/<int:id>')
 def eliminar(id):
+    if app.config['iduser'] == -1:
+        return redirect('/ingresar')
+
     fila = cliente.querySelect("SELECT imagen FROM cliente WHERE id = %s", (id))
     if os.path.isfile(os.path.join(app.config['UPLOADS'])):
         os.remove(os.path.join(app.config['UPLOADS'], fila[0][0]))
@@ -134,6 +162,9 @@ def eliminar(id):
 
 @app.route('/store', methods=['POST'])
 def storage():
+    if app.config['iduser'] == -1:
+        return redirect('/ingresar')
+
     _id     = int(request.form['idCliente'])
     _nombre = request.form['nombre']
     _descripcion = request.form['descripcion']        
