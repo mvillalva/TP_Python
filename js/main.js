@@ -144,12 +144,14 @@ function validarIngreso(){
 document.querySelectorAll("a[data-tipo='info']").forEach((info) => {  
     info.addEventListener("click", (e) => {    
         document.querySelector(e.currentTarget.dataset.href).classList.toggle("popup-visible");
+        document.body.classList.toggle("block-scroll");
     });    
 });
 
 document.querySelectorAll("[data-tipo='ocultar-info']").forEach((info) => {
     info.addEventListener("click", (e) => {    
         e.currentTarget.parentElement.classList.toggle("popup-visible");
+        document.body.classList.toggle("block-scroll");
     });
 });
 

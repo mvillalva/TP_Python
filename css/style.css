@@ -40,6 +40,10 @@ body {
   --font-title-weight: 400;
 }
 
+.block-scroll{
+  overflow: hidden;
+}
+
 .navi {
   position: fixed;
   display: flex;
@@ -596,6 +600,7 @@ body {
 .popup__text,
 .popup__link {
   font-size: 1.4rem;
+  word-break: break-all;
   text-decoration: none;
   color: var(--naranja);
 }
@@ -688,7 +693,7 @@ body {
 
 .gallery__image--icon {
   position: absolute;
-  top: 18%;
+  top: 35px;
   left: 90%;
   font-size: 4rem;
   color: var(--blanco70);
@@ -1086,8 +1091,9 @@ body {
     max-height: none;
   }
 
+  .gallery__item:hover .gallery__image--fit,
   .gallery__image--fit:hover {
-    object-fit: none;
+    height: 216%;
   }  
 }
 
