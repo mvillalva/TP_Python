@@ -1,4 +1,14 @@
 {% macro mensaje(title, message, icon, confirm, nro) -%}
+    {% set aceptar = namespace(value='OK') %}
+    {% set cancelar = namespace(value='Cancelar') %}
+    {% set ocultar = namespace(value='hidden') %}
+
+    {% if confirm == 'S' %}
+        {% set aceptar.value='Sí' %}
+        {% set cancelar.value='No' %}
+        {% set ocultar.value='' %}
+    {% endif %}
+
     <div class="modal fade" id="modalMessage{{nro}}" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -10,10 +20,8 @@
                     <p><span class="modal-icon {{ icon }}"></span> {{ message }}</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="modal-btn modal-btn--md btn-ok" id="btn_ok" data-bs-dismiss="modal">Aceptar</button>
-                    {% if confirm == 'S' %}
-                        <button type="button" class="modal-btn modal-btn--md btn-cancel" id="btn_cancel" data-bs-dismiss="modal">Cancelar</button>                
-                    {% endif %}
+                    <button type="button" class="modal-btn modal-btn--md btn-ok" id="btn_ok" data-bs-dismiss="modal">{{aceptar.value}}</button>
+                    <button type="button" class="modal-btn modal-btn--md btn-cancel" id="btn_cancel" data-bs-dismiss="modal" {{ocultar.value}}>{{cancelar.value}}</button>
                 </div>
             </div>
         </div>
