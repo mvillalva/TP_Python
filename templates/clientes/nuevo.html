@@ -1,47 +1,19 @@
 {% extends 'base_clientes.html' %}
 
-{% block css %}
-    <link rel="stylesheet" href="{{ url_for('css', filename='normalize.css') }}" />
-    <link rel="stylesheet" href="{{ url_for('css', filename='bootstrap.min.css') }}" />    
-    <link rel="stylesheet" href="{{ url_for('css', filename='clientes.css') }}" />
-{% endblock css %}
-
 {% block title %}Restó - Nuevo Cliente{% endblock title %}
 
 {% block content %}
 
-<div class="card__container mt-4">
-    <form class="card justify-content-center align-items-center" action="/store" method="POST" enctype="multipart/form-data">        
-        <div class="card-img-container">
-            <input type="file" name="img" id="img" hidden required>
-            <img id="foto" name="foto" type="image" src="{{url_for('img', filename='Resto.png')}}" class="card-img-top img-thumbnail" onclick="openFile();"/>
-            <label class="card-label-container">
-                <input type="checkbox" name="destacado" id="destacado" class="card-destacado">
-                <span class="card-destacado-icon fas fa-star"></span>
-            </label>
-        </div>
-        <ul class="list-group list-group-flush">
-            <input id="idCliente" name="idCliente" type="text" value="0" hidden>            
-            <input id="nombre" name="nombre" type="text" class="list-group-item card-item-title" placeholder="Nombre del Restó" required>
-            <textarea cols="30" rows="3" type="text" name="descripcion" id="descripcion" placeholder="Descripción" class="list-group-item  card-item-style" required></textarea>
-            <span class="list-group-item-icon fas fa-map-marker-alt"></span><input id="direccion" name="direccion" type="text" class="list-group-item" placeholder="Dirección" required>
-            <span class="list-group-item-icon fas fa-phone"></span><input id="telefono" name="telefono" type="tel" class="list-group-item" placeholder="Teléfono" required>
-            <span class="list-group-item-icon fas fa-at"></span><input id="email" name="email" type="email" class="list-group-item" placeholder="Email" required>
-            <span class="list-group-item-icon fas fa-globe-americas"></span><input id="url" name="url" type="url" class="list-group-item" placeholder="Web">
-            <span class="list-group-item-icon fas fa-map-marked-alt"></span><input id="mapa" name="mapa" type="url" class="list-group-item" placeholder="Ubicación">
-        </ul>
-        <div class="card-body">
-            <button type="submit" class="btn btn-success" value="Guardar" onclick="return validaCampos();">Guardar</button>
-            <a class="btn btn-danger btn-accion" data-href="{{ url_for('clientes') }}">cancelar</a>
-        </div>
-    </form>
-</div>
+    <div class="card__container mt-4">
+        <form class="card justify-content-center align-items-center" action="/store" method="POST" enctype="multipart/form-data">
+            {% from 'macros.j2' import form as formulario %}
+            {{formulario()}}
+        </form>
+    </div>
+
     {% from 'macros.j2' import mensaje as msg %}
+
     {{msg('Atención!', '¿Estás seguro que querés cancelar?', '', 'S', '1')}}
     {{msg('Atención!', 'Subí la imagen del Restó', '', 'N', '2')}}
-{% endblock content %}
 
-{% block scripts %}
-    <script src="{{ url_for('js', filename='bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ url_for('js', filename='clientes.js') }}"></script>
-{% endblock scripts %}
+{% endblock content %}
