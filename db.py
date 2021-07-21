@@ -13,9 +13,9 @@ class DB(ABC):
         super().__init__()
         self.__mysql = MySQL()
         self.__app = app
-        self.__db_host = ""
-        self.__db_user = ""
-        self.__db_pass = ""
+        self.__db_host = "localhost"
+        self.__db_user = "root"
+        self.__db_pass = "Maxiv7704"
 
     @abstractclassmethod
     def querySelect(self):
