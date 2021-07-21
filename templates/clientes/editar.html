@@ -34,14 +34,15 @@
             {% endfor %}
         </ul>
         <div class="card-body">
-            <button type="submit" class="btn btn-success" value="Guardar">Guardar</button>
+            <button type="submit" class="btn btn-success" value="Guardar" onclick="return validaCampos();">Guardar</button>
             <a class="btn btn-danger btn-accion" data-href="{{ url_for('clientes') }}">cancelar</a>
         </div>
     </form>
 </div>
 
     {% from 'macros.j2' import mensaje as msg %}
-    {{msg('Atención!', '¿Está seguro que quiere cancelar la edición?', '', 'S')}}
+    {{msg('Atención!', '¿Estás seguro que querés cancelar?', '', 'S', '1')}}
+    {{msg('Atención!', 'Subí la imagen del Restó', '', 'N', '2')}}
     
 {% endblock content %}
 

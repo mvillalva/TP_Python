@@ -140,7 +140,7 @@ def movimientos():
     menues = cliente.querySelect("call s_menu(%s)", (app.config['iduser']))
     clientes = cliente.querySelect("call s_clientes(%s, 0, 1)", (app.config['iduser']))
 
-    return render_template('clientes/movimiento.html', menues=menues, clientes=clientes)
+    return render_template('clientes/movimientos.html', menues=menues, clientes=clientes)
 
 
 @app.route('/eliminar/<int:id>')

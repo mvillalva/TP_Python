@@ -18,11 +18,26 @@ const openFile = () => {
      image.click();
 };
 
-let modalMessage = new bootstrap.Modal(document.getElementById('modalMessage'), {
-    keyboard: false
-  });
+if (document.getElementById('modalMessage1')){
+    var modalMessage = new bootstrap.Modal(document.getElementById('modalMessage1'), {
+        keyboard: false
+    });
+}
 
 let _href;
+
+const validaCampos = () => {
+    image = document.getElementById("img")
+    if(!image.value){
+        let modal = document.getElementById('modalMessage2');
+        if (modal) {
+            let modalMessage2 = new bootstrap.Modal(modal, {
+                keyboard: false
+              });
+            modalMessage2.toggle();
+        }
+    }
+}
 
 const modalConfirm = function(callback){
   

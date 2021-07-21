@@ -1,0 +1,13 @@
+{% extends 'base_clientes.html' %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('css', filename='normalize.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('css', filename='bootstrap.min.css') }}" />    
+    <link rel="stylesheet" href="{{ url_for('css', filename='clientes.css') }}" />
+{% endblock css %}
+
+
+{% block scripts %}
+    <script src="{{ url_for('js', filename='bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('js', filename='clientes.js') }}"></script>
+{% endblock scripts %}
