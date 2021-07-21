@@ -32,7 +32,8 @@
     {% set email = namespace(value='') %}
     {% set url = namespace(value='') %}
     {% set geo = namespace(value='') %}
-    {% set cover = namespace(value='') %}    
+    {% set cover = namespace(value='') %}
+    {% set valida_img = namespace(value='required') %}
 
     {% if editar %}
         {% set id.value = cliente[0] %}
@@ -48,10 +49,11 @@
         {% set url.value = cliente[8] %}
         {% set geo.value = cliente[9] %}
         {% set cover.value = 'card-img-cover' %}
+        {% set valida_img.value = '' %}
     {% endif %}
     
     <div class="card-img-container">
-        <input type="file" name="img" id="img" hidden required>
+        <input type="file" name="img" id="img" hidden {{valida_img.value}}>
         <img id="foto" name="foto" type="image" src="{{img.value}}" class="card-img-top img-thumbnail {{cover.value}}" onclick="openFile();"/>
         <label class="card-label-container">
             <input type="checkbox" name="destacado" id="destacado" class="card-destacado" {{fav.value}}>
@@ -82,7 +84,7 @@
     </ul>
 
     <div class="card-body">
-        <button type="submit" class="btn btn-success" value="Guardar" onclick="return validaCampos();">Guardar</button>
+        <button type="submit" class="btn btn-success" value="Guardar" onclick="return validaCampos('{{valida_img.value}}');">Guardar</button>
         <a class="btn btn-danger btn-accion" data-href="{{ url_for('clientes') }}">Cancelar</a>
     </div>
 {% endmacro %}

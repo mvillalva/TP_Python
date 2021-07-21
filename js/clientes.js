@@ -26,15 +26,17 @@ if (document.getElementById('modalMessage1')){
 
 let _href;
 
-const validaCampos = () => {
-    image = document.getElementById("img")
-    if(!image.value){
-        let modal = document.getElementById('modalMessage2');
-        if (modal) {
-            let modalMessage2 = new bootstrap.Modal(modal, {
-                keyboard: false
-              });
-            modalMessage2.toggle();
+const validaCampos = (nuevo="") => {
+    if (nuevo){
+        image = document.getElementById("img")
+        if(!image.value){
+            let modal = document.getElementById('modalMessage2');
+            if (modal) {
+                let modalMessage2 = new bootstrap.Modal(modal, {
+                    keyboard: false
+                  });
+                modalMessage2.toggle();
+            }
         }
     }
 }
