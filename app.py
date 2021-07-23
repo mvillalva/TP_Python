@@ -188,9 +188,11 @@ def storage():
         _foto.save("uploads/" + nuevoNombreFoto)
         if _id > 0:
             fila = cliente.querySelect("SELECT imagen FROM cliente WHERE id = %s", (_id))
-            if os.path.isfile(os.path.join(app.config['UPLOADS'])):
-                os.remove(os.path.join(app.config['UPLOADS'], fila[0][0]))
-        
+            if fila[0][0] != "Resto.png":
+                if os.path.isfile(os.path.join(app.config['UPLOADS'], fila[0][0])):
+                    os.remove(os.path.join(app.config['UPLOADS'], fila[0][0]))
+    else:
+        nuevoNombreFoto = "Resto.png"
 
     sql = "call iud_cliente(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
 
