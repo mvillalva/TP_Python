@@ -149,7 +149,7 @@ def eliminar(id):
         return redirect('/ingresar')
 
     fila = cliente.querySelect("SELECT imagen FROM cliente WHERE id = %s", (id))
-    if os.path.isfile(os.path.join(app.config['UPLOADS'])):
+    if os.path.isfile(os.path.join(app.config['UPLOADS'], fila[0][0])):
         os.remove(os.path.join(app.config['UPLOADS'], fila[0][0]))
 
     sql = "call iud_cliente(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
