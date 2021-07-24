@@ -156,6 +156,8 @@ document.querySelectorAll("[data-tipo='ocultar-info']").forEach((info) => {
 });
 
 document.addEventListener("keydown", (e) => {
-    if (e.key == "Escape")
+    if (e.key == "Escape"){
         document.querySelector(".popup-visible").classList.toggle("popup-visible");
+        document.body.classList.toggle("block-scroll");
+    }
 });
