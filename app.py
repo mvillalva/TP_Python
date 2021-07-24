@@ -180,19 +180,16 @@ def storage():
         _destacado = 1
 
     now = datetime.now()
-    tiempo = now.strftime("%Y%H%M%S")
+    tiempo = now.strftime("%Y%m%d%H%M%S")
     nuevoNombreFoto = ''    
 
     if _foto.filename != '':
-        nuevoNombreFoto = tiempo + _foto.filename
+        nuevoNombreFoto = tiempo + '-' +_foto.filename
         _foto.save("uploads/" + nuevoNombreFoto)
         if _id > 0:
-            fila = cliente.querySelect("SELECT imagen FROM cliente WHERE id = %s", (_id))
-            if fila[0][0] != "Resto.png":
-                if os.path.isfile(os.path.join(app.config['UPLOADS'], fila[0][0])):
-                    os.remove(os.path.join(app.config['UPLOADS'], fila[0][0]))
-    else:
-        nuevoNombreFoto = "Resto.png"
+            fila = cliente.querySelect("SELECT imagen FROM cliente WHERE id = %s", (_id))            
+            if os.path.isfile(os.path.join(app.config['UPLOADS'], fila[0][0])):
+                os.remove(os.path.join(app.config['UPLOADS'], fila[0][0]))    
 
     sql = "call iud_cliente(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
 
